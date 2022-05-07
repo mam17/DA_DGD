@@ -2,83 +2,116 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Product;
+use App\Models\Slide;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function index()
     {
-        return view('front.gallery');
+        $product = Product::orderBy('id', 'desc')->get();
+        $blog = Blog::all();
+        $slide = Slide::all();
+        $sale = Product::where('discount', '>', 0)->limit(4)->get();
+        $status = Product::where('status', 1)->limit(4)->get();
+        $viewData = [
+            'product' => $product,
+            'blog' => $blog,
+            'slide' => $slide,
+            'sale' => $sale,
+            'status' => $status
+        ];
+        return view('front.index', $viewData);
+    }
+    
+    public function getProduct()
+    {
+        $product = Product::orderBy('id', 'desc')->get();
+        $category = Category::all();
+        $brand = Brand::all();
+        $viewData = [
+            'product' => $product,
+            'category' => $category,
+            'brand' => $brand
+        ];
+        return view('front.product', $viewData);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function getCategory($slug, $id)
     {
-        //
+        $brand = Brand::all();
+        $category = Category::all();
+        $cate = Category::find($id);
+        $viewData = [
+            'cate' => $cate,
+            'brand' => $brand,
+            'category' => $category
+        ];
+        return view('front.category', $viewData);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function getBrand($slug, $id)
     {
-        //
+        $bra = Brand::find($id);
+        $brand = Brand::all();
+        $category = Category::all();
+        $viewData = [
+            'bra' => $bra,
+            'brand' => $brand,
+            'category' => $category
+        ];
+        return view('front.brand', $viewData);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function getProductDetail( $product_slug, $product_id)
     {
-        //
+        $product = Product::find($product_id);
+        $viewData = [
+            'product' => $product,
+        ];
+        return view('front.pro-detail', $viewData);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function getGallery()
     {
-        //
+        return view('front.index');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function getContact()
     {
-        //
+        $slide = Slide::all();
+        $viewData = [
+            'slide' => $slide,
+        ];
+        return view('front.contact-us', $viewData);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    
+    public function getAccount()
     {
-        //
+        $slide = Slide::all();
+        $viewData = [
+            'slide' => $slide,
+        ];
+        return view('front.my-account', $viewData);
+    }
+    public function getSlide()
+    {
+        return view('front.index');
+    }
+    
+    public function getAbout()
+    {
+        $blog = Blog::all();
+        $slide = Slide::all();
+        $viewData = [
+            'blog' => $blog,
+            'slide' => $slide
+        ];
+        return view('front.about', $viewData);
     }
 }

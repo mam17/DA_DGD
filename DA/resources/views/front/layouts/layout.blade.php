@@ -11,14 +11,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Site Metas -->
-    <title>Web site bán đồ gia dụng</title>
+    <title>Đồ gia dụng</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="/front/assets/images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="/front/assets/images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="/front/assets/images/LT.PNG" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/front/assets/images/longto.PNG">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="/front/assets/css/bootstrap.min.css">
@@ -60,28 +60,30 @@
                         <div id="offer-box" class="carouselTicker">
                             <ul class="offer-box">
                                 <li>
-                                    <i class="fab fa-opencart"></i> Yến ơi
+                                    <i class="fab fa-opencart"></i> Giảm giá ưu đãi lên đến 80%
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> Yến ơiii
+                                    <i class="fab fa-opencart"></i> Bốc thăm trúng thưởng mừng sinh nhật Long Tơ
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> ơi Yến
+                                    <i class="fab fa-opencart"></i> Thanh lí các loại mặt hàng giảm giá sốc
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> ưmmmmmmmmm
+                                    <i class="fab fa-opencart"></i> Hàng ngàn sản phẩm mới về
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> aaaaaaaaaaaaa
+                                    <i class="fab fa-opencart"></i> Chào mừng bạn đến với Long Tơ
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> wwwwwwwwwwwwwwwwwwwww
+                                    <i class="fab fa-opencart"></i> Sự chuyên nghiệp và uy tín là tôn chỉ của chúng tôi
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> eeeeeeeeeeeeeeeee
+                                    <i class="fab fa-opencart"></i> Khách hàng mới là người quyết định tương lai, phát
+                                    triển của Long Tơ
                                 </li>
                                 <li>
-                                    <i class="fab fa-opencart"></i> emmmmmmmmmmmmmmmmmmmmm
+                                    <i class="fab fa-opencart"></i> Luôn hướng tới khách hàng, lắng nghe ý kiến, nhu cầu
+                                    của khách hàng
                                 </li>
                             </ul>
                         </div>
@@ -101,31 +103,32 @@
             <div class="container">
                 <!-- Start Header Navigation -->
                 <div class="navbar-header">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu"
+                        aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
                         <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href=""><img src="/front/assets/images/logo.png" class="logo" alt=""></a>
+                    <a class="navbar-brand" href="{{route('index')}}"><img src="/front/assets/images/LONGTO.png"
+                            class="logo" alt=""></a>
                 </div>
                 <!-- End Header Navigation -->
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
+
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item active"><a class="nav-link" href="">Trang chủ</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">Giới thiệu</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="{{route('index')}}">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('index.getAbout')}}">Giới thiệu</a></li>
                         <li class="dropdown">
-                            <a href="#" class="nav-link dropdown-toggle arrow" data-toggle="dropdown">SẢN PHẨM</a>
+                            <a href="#" class="nav-link" data-toggle="dropdown">Sản phẩm</a>
                             <ul class="dropdown-menu">
-                                <li><a href="">Tất cả sản phẩm</a></li>
-                                <!-- <li><a href="">Shop Detail</a></li> -->
-                                <li><a href="">Giỏ hàng</a></li>
-                                <li><a href="">Thanh toán</a></li>
-                                <!-- <li><a href="">My Account</a></li> -->
-                                <li><a href="">Danh sách yêu thích</a></li>
+                                <li><a href="{{route('index.getProduct')}}">Tất cả sản phẩm</a></li>
+                                <li><a href="{{route('index.getGallery')}}">Thư viện sản phẩm</a></li>
+                                <li><a href="{{route('cart.index')}}">Giỏ hàng</a></li>
+                                <li><a href="{{route('index.getCheckOut')}}">Thanh toán</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="">Gallery</a></li>
-                        <li class="nav-item"><a class="nav-link" href="">LIÊN HỆ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('index.getAccount')}}">Tài khoản</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('index.getContact')}}">Liên hệ</a></li>
                     </ul>
                 </div>
                 <!-- /.navbar-collapse -->
@@ -135,7 +138,7 @@
                     <ul>
                         <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
                         <li class="side-menu">
-                            <a href="#">
+                            <a href="{{route('cart.index')}}">
                                 <i class="fa fa-shopping-bag"></i>
                                 <span class="badge">3</span>
                                 <p>Giỏ hàng</p>
@@ -151,17 +154,20 @@
                 <li class="cart-box">
                     <ul class="cart-list">
                         <li>
-                            <a href="#" class="photo"><img src="/front/assets/images/img-pro-01.jpg" class="cart-thumb" alt="" /></a>
+                            <a href="#" class="photo"><img src="/front/assets/images/img-pro-01.jpg" class="cart-thumb"
+                                    alt="" /></a>
                             <h6><a href="#">Delica omtantur </a></h6>
                             <p>1x - <span class="price">$80.00</span></p>
                         </li>
                         <li>
-                            <a href="#" class="photo"><img src="/front/assets/images/img-pro-02.jpg" class="cart-thumb" alt="" /></a>
+                            <a href="#" class="photo"><img src="/front/assets/images/img-pro-02.jpg" class="cart-thumb"
+                                    alt="" /></a>
                             <h6><a href="#">Omnes ocurreret</a></h6>
                             <p>1x - <span class="price">$60.00</span></p>
                         </li>
                         <li>
-                            <a href="#" class="photo"><img src="/front/assets/images/img-pro-03.jpg" class="cart-thumb" alt="" /></a>
+                            <a href="#" class="photo"><img src="/front/assets/images/img-pro-03.jpg" class="cart-thumb"
+                                    alt="" /></a>
                             <h6><a href="#">Agam facilisis</a></h6>
                             <p>1x - <span class="price">$40.00</span></p>
                         </li>
@@ -283,7 +289,7 @@
         </div>
     </div>
     <!-- End Instagram Feed  -->
-    
+
     <!-- Start Footer  -->
     <footer>
         <div class="footer-main">
@@ -348,13 +354,16 @@
                             <h4>Liên hệ</h4>
                             <ul>
                                 <li>
-                                    <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston Street Wichita,<br> KS 67213 </p>
+                                    <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 3756 <br>Preston
+                                        Street Wichita,<br> KS 67213 </p>
                                 </li>
                                 <li>
-                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a></p>
+                                    <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705
+                                            770</a></p>
                                 </li>
                                 <li>
-                                    <p><i class="fas fa-envelope"></i>Email: <a href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                                    <p><i class="fas fa-envelope"></i>Email: <a
+                                            href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
                                 </li>
                             </ul>
                         </div>
@@ -372,7 +381,9 @@
     <a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
 
     <!-- ALL JS FILES -->
-    <script src="/front/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     <script src="/front/assets/js/popper.min.js"></script>
     <script src="/front/assets/js/bootstrap.min.js"></script>
     <!-- ALL PLUGINS -->
@@ -387,6 +398,54 @@
     <script src="/front/assets/js/form-validator.min.js"></script>
     <script src="/front/assets/js/contact-form-script.js"></script>
     <script src="/front/assets/js/custom.js"></script>
+
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+
+    <script>
+    function addCart(id) {
+        console.log(id)
+        $.ajax({
+            url: '/cart/add-cart/' + id,
+            type: 'GET',
+        }).done(function(response) {
+            RenderLishCart(response);
+            alertify.success('Thêm thành công vào giỏ hàng');
+        })
+    }
+
+    function DeleteItemCart(id) {
+        console.log(id)
+        $.ajax({
+            url: '/cart/delete-cart/' + id,
+            type: 'GET',
+        }).done(function(response) {
+            RenderLishCart(response);
+            alertify.success('Đã xóa sản phẩm thành công');
+        })
+    }
+    
+    function UpdateItemCart(id) {
+        console.log($("#select-" + id).val())
+        $.ajax({
+            url: '/cart/update-cart/' + id + '/' + $("#select-" + id).val(),
+            type: 'GET',
+        }).done(function(response) {
+            RenderLishCart(response);
+            alertify.success('Đã cập nhật sản phẩm thành công');
+        })
+    }
+
+    function RenderLishCart(response) {
+        $("#list-cart").empty();
+        $("#list-cart").html(response);
+    }
+    </script>
     @yield('script')
 </body>
 

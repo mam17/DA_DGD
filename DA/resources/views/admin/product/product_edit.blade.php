@@ -102,8 +102,9 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Trạng thái sản phẩm: </label>
-                        <input type="checkbox" name="status"> Nổi bật
+                    <label>Trạng thái sản phẩm: </label>
+                        <input type="hidden" name="status" value="0" />
+                        <input type="checkbox" name="status" value="1" > Nổi bật
                     </div>
                     <button type="submit" class="btn btn-primary">Cập nhật</button>
                     <button type="reset" class="btn btn-success">Làm mới</button>

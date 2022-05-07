@@ -74,7 +74,7 @@ class ProductController extends Controller
             $product->gift = $request->gift;
             $product->sold = $request->sold;
             $product->status = $request->status;
-            $product->slug = Str::slug($request->name);
+            $product->slug = Str::slug($request->name_pr);
 
             if ($request->hasFile('image')) {
                 $file = $request->file('image');
@@ -126,7 +126,7 @@ class ProductController extends Controller
         $product->gift = $request->gift;
         $product->sold = $request->sold;
         $product->status = $request->status;
-        $product->slug = Str::slug($request->name);
+        $product->slug = Str::slug($request->name_pr);
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');

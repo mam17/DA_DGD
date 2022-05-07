@@ -17,8 +17,39 @@ use Illuminate\Support\Facades\Route;
 */
 
 //users
-
 Route::get('/', [PageController::class, 'index'])->name('index');
+
+Route::get('/about', [PageController::class, 'getAbout'])->name('index.getAbout');
+
+Route::get('/{slug}&id={id}', [PageController::class, 'getCategory'])->name('index.getCategory');
+Route::get('/contact-us', [PageController::class, 'getContact'])->name('index.getContact');
+
+Route::get('brand/{slug}&id={id}', [PageController::class, 'getBrand'])->name('index.getBrand');
+
+Route::get('/product/{product_slug}&id={product_id}', [PageController::class, 'getProductDetail'])->name('index.getProductDetail');
+Route::get('/gallery', [PageController::class, 'getGallery'])->name('index.getGallery');
+
+Route::get('/slide', [PageController::class, 'getSlide'])->name('index.getSlide');
+
+Route::get('/product', [PageController::class, 'getProduct'])->name('index.getProduct');
+
+Route::get('/my_acc', [PageController::class, 'getAccount'])->name('index.getAccount');
+
+
+
+Route::get('/check-out', [PageController::class, 'getCheckOut'])->name('index.getCheckOut');
+
+Route::prefix('cart')->group(function (){
+    Route::get('/', [CartController::class, 'index'])->name('cart.index');
+
+    Route::get('/add-cart/{id}', [CartController::class, 'addCart'])->name('cart.addCart');
+
+    Route::get('/delete-cart/{id}', [CartController::class, 'getDelete'])->name('cart.DeleteItemCart');
+    Route::get('/delete-list/{id}', [CartController::class, 'DeleteItemListCart'])->name('cart.DeleteItemListCart');
+
+    Route::get('/update-cart/{id}/{quanty}', [CartController::class, 'updateCart'])->name('cart.UpdateItemListCart');
+
+});
 
 // admin
 //Public Routes

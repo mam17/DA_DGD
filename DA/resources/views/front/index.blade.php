@@ -3,286 +3,254 @@
 @section('content')
 
 
-    <!-- Start Slider -->
-    <div id="slides-shop" class="cover-slides">
-        <ul class="slides-container">
-            <li class="text-center">
-                <img src="/front/assets/images/banner-01.jpg" alt="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> Freshshop</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
-                            <p><a class="btn hvr-hover" href="#">Shop New</a></p>
-                        </div>
+<!-- Start Slider -->
+<div id="slides-shop" class="cover-slides">
+    <ul class="slides-container">
+        @foreach($slide as $item)
+        <li class="text-center">
+            <img src="{{asset('uploads/images/slide/'.$item->image)}}" alt="">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="m-b-20"><strong>Chào mừng bạn đên với <br> {{$item -> name_slide}}</strong></h1>
+                        <p class="m-b-40"><br> {{$item->content}}</p>
+                        <p><a class="btn hvr-hover" href="{{route('index.getProduct')}}">Sản phẩm</a></p>
                     </div>
                 </div>
-            </li>
-            <li class="text-center">
-                <img src="/front/assets/images/banner-02.jpg" alt="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> Freshshop</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
-                            <p><a class="btn hvr-hover" href="#">Shop New</a></p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-            <li class="text-center">
-                <img src="/front/assets/images/banner-03.jpg" alt="">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h1 class="m-b-20"><strong>Welcome To <br> Freshshop</strong></h1>
-                            <p class="m-b-40">See how your users experience your website in realtime or view <br> trends to see any changes in performance over time.</p>
-                            <p><a class="btn hvr-hover" href="#">Shop New</a></p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        </ul>
-        <div class="slides-navigation">
-            <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-            <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
-        </div>
+            </div>
+        </li>
+        @endforeach
+    </ul>
+    <div class="slides-navigation">
+        <a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+        <a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
     </div>
-    <!-- End Slider -->
+</div>
+<!-- End Slider -->
 
-    <!-- Start Categories  -->
-    <div class="categories-shop">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="shop-cat-box">
-                        <img class="img-fluid" src="/front/assets/images/categories_img_01.jpg" alt="" />
-                        <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
-                    </div>
+<!-- Start Categories  -->
+<div class="categories-shop">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="shop-cat-box">
+                    <img class="img-fluid" src="/front/assets/images/categories_img_01.jpg" alt="" />
+                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="shop-cat-box">
-                        <img class="img-fluid" src="/front/assets/images/categories_img_02.jpg" alt="" />
-                        <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
-                    </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="shop-cat-box">
+                    <img class="img-fluid" src="/front/assets/images/categories_img_02.jpg" alt="" />
+                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                    <div class="shop-cat-box">
-                        <img class="img-fluid" src="/front/assets/images/categories_img_03.jpg" alt="" />
-                        <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
-                    </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                <div class="shop-cat-box">
+                    <img class="img-fluid" src="/front/assets/images/categories_img_03.jpg" alt="" />
+                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Categories -->
-	
-	<div class="box-add-products">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-6 col-md-6 col-sm-12">
-					<div class="offer-box-products">
-						<img class="img-fluid" src="/front/assets/images/add-img-01.jpg" alt="" />
-					</div>
-				</div>
-				<div class="col-lg-6 col-md-6 col-sm-12">
-					<div class="offer-box-products">
-						<img class="img-fluid" src="/front/assets/images/add-img-02.jpg" alt="" />
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+</div>
+<!-- End Categories -->
 
-    <!-- Start Products  -->
-    <div class="products-box">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="title-all text-center">
-                        <h1>ĐỒ GIA DỤNG</h1>
-                        <p>Thứ không thể thiếu trong cuộc sống hàng ngày</p>
+<div class="box-add-products">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="offer-box-products">
+                    <img class="img-fluid" src="/front/assets/images/add-img-01.jpg" alt="" />
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <div class="offer-box-products">
+                    <img class="img-fluid" src="/front/assets/images/add-img-02.jpg" alt="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Start Products  -->
+<div class="products-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="title-all text-center">
+                    <h1>SẢN PHẨM</h1>
+                    <p>Đồ gia dụng, không thể thiếu trong mọi gia đình</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="special-menu text-center">
+                    <div class="button-group filter-button-group">
+                        <button class="active" data-filter=".all">All</button>
+                        <button data-filter=".top-featured">Nổi bật</button>
+                        <button data-filter=".best-seller">Đang saller</button>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="special-menu text-center">
-                        <div class="button-group filter-button-group">
-                            <button class="active" data-filter="*">All</button>
-                            <button data-filter=".top-featured">Nổi bật</button>
-                            <button data-filter=".best-seller">Đang saller</button>
+        </div>
+
+        <div class="row special-list">
+
+        @foreach($product as $item)
+                <div class="col-lg-3 col-md-6 special-grid all">
+                    <div class="products-single fix">
+                        <div class="box-img-hover">
+                            <div class="type-lb">
+                                <p class="sale">Sale</p>
+                            </div>
+                            <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
+                                class="img-fluid" alt="Image">
+                            <div class="mask-icon">
+                                <ul>
+                                    <li><a href="#"
+                                            data-toggle="tooltip" data-placement="right" title="View"><i
+                                                class="fas fa-eye"></i></a></li>
+                                </ul>
+                                <a class="cart add-cart" href="#">Thêm vào giỏ
+                                    hàng</a>
+                            </div>
+                        </div>
+                        <div class="why-text">
+                            <h4 style="text-align: center;">{{$item->name_pr}}</h4>
+                            <h4 style="color: red; text-align: center;">{{$item->brand->name_bra}}</h4>
+                            @if($item->discount != 0)
+                            <h4><del style="color: chocolate;">{{number_format($item->price)}}
+                                    VNĐ</h5>
+                                    <h5 style="text-align: center;">
+                                </del>{{number_format($item->discount)}} VNĐ</h5>
+                                @else
+                                <div style="padding-top: 33px;">
+                                    <h5>{{number_format($item->price)}} VNĐ</h5>
+                                </div>
+                                @endif
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row special-list">
+            @endforeach
+         
+            @foreach($sale as $item)
                 <div class="col-lg-3 col-md-6 special-grid best-seller">
                     <div class="products-single fix">
                         <div class="box-img-hover">
                             <div class="type-lb">
                                 <p class="sale">Sale</p>
                             </div>
-                            <img src="/front/assets/images/img-pro-01.jpg" class="img-fluid" alt="Image">
+                            <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
+                                class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                    <li><a href="#"
+                                            data-toggle="tooltip" data-placement="right" title="View"><i
+                                                class="fas fa-eye"></i></a></li>
                                 </ul>
-                                <a class="cart" href="#">Add to Cart</a>
+                                <a class="cart add-cart" href="#" >Thêm vào giỏ
+                                    hàng</a>àng</a>
                             </div>
                         </div>
                         <div class="why-text">
-                            <h4>Lorem ipsum dolor sit amet</h4>
-                            <h5> $7.79</h5>
+                            <h4 style="text-align: center;">{{$item->name_pr}}</h4>
+                            <h4 style="color: red; text-align: center;">{{$item->brand->name_bra}}</h4>
+                            @if($item->discount != 0)
+                            <h4><del style="color: chocolate;">{{number_format($item->price)}}
+                                    VNĐ</h5>
+                                    <h5 style="text-align: center;">
+                                </del>{{number_format($item->discount)}} VNĐ</h5>
+                                @else
+                                <div style="padding-top: 33px;">
+                                    <h5>{{number_format($item->price)}} VNĐ</h5>
+                                </div>
+                                @endif
                         </div>
                     </div>
                 </div>
+            @endforeach
 
+            @foreach($status as $item)
                 <div class="col-lg-3 col-md-6 special-grid top-featured">
                     <div class="products-single fix">
                         <div class="box-img-hover">
                             <div class="type-lb">
-                                <p class="new">New</p>
+                                <p class="new">Nổi bật</p>
                             </div>
-                            <img src="/front/assets/images/img-pro-02.jpg" class="img-fluid" alt="Image">
+                            <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
+                                class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
+                                    <li><a href="#"
+                                            data-toggle="tooltip" data-placement="right" title="View"><i
+                                                class="fas fa-eye"></i></a></li>
                                 </ul>
-                                <a class="cart" href="#">Add to Cart</a>
+                                <a class="cart add-cart" href="#">Thêm vào giỏ
+                                    hàng</a>
                             </div>
                         </div>
                         <div class="why-text">
-                            <h4>Lorem ipsum dolor sit amet</h4>
-                            <h5> $9.79</h5>
+                            <h4 style="text-align: center;">{{$item->name_pr}}</h4>
+                            <h4 style="color: red; text-align: center;">{{$item->brand->name_bra}}</h4>
+                            @if($item->discount != 0)
+                            <h4><del style="color: chocolate;">{{number_format($item->price)}}
+                                    VNĐ</h5>
+                                    <h5 style="text-align: center;">
+                                </del>{{number_format($item->discount)}} VNĐ</h5>
+                                @else
+                                <div style="padding-top: 33px;">
+                                    <h5>{{number_format($item->price)}} VNĐ</h5>
+                                </div>
+                                @endif
                         </div>
                     </div>
                 </div>
+            @endforeach
+              
+        </div>
+        
+        <!-- End Products  -->
 
-                <div class="col-lg-3 col-md-6 special-grid top-featured">
-                    <div class="products-single fix">
-                        <div class="box-img-hover">
-                            <div class="type-lb">
-                                <p class="sale">Sale</p>
-                            </div>
-                            <img src="/front/assets/images/img-pro-03.jpg" class="img-fluid" alt="Image">
-                            <div class="mask-icon">
-                                <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                </ul>
-                                <a class="cart" href="#">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="why-text">
-                            <h4>Lorem ipsum dolor sit amet</h4>
-                            <h5> $10.79</h5>
-                        </div>
-                    </div>
-                </div>
+        <!-- Start Blog  -->
 
-                <div class="col-lg-3 col-md-6 special-grid best-seller">
-                    <div class="products-single fix">
-                        <div class="box-img-hover">
-                            <div class="type-lb">
-                                <p class="sale">Sale</p>
-                            </div>
-                            <img src="/front/assets/images/img-pro-04.jpg" class="img-fluid" alt="Image">
-                            <div class="mask-icon">
-                                <ul>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="View"><i class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
-                                </ul>
-                                <a class="cart" href="#">Add to Cart</a>
-                            </div>
-                        </div>
-                        <div class="why-text">
-                            <h4>Lorem ipsum dolor sit amet</h4>
-                            <h5> $15.79</h5>
+        <div class="latest-blog">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="title-all text-center">
+                            <h1>BÀI VIẾT</h1>
+                            <p>Tin tức mới nhất của chúng tôi</p>
                         </div>
                     </div>
                 </div>
+                <div class="featured-products-box owl-carousel owl-theme">
+                    <?php $i = 1; ?>
+                    @foreach($blog as $item)
+                    @if ($i < 5) <div class="item">
+                        <div class="products-single fix">
+                            <div class="hover-team">
+                                <div class="our-team"> <a href="{{route('index')}}"><img
+                                            src="{{asset('uploads/images/blog/'.$item->image)}}" style="height: 250px;"
+                                            alt="" /></a>
+                                    <div class="team-content">
+                                        <h3 class="title">{{$item->title}}</h3>
+                                    </div>
+                                    <div class="icon"> <i class="fa fa-plus" aria-hidden="true"></i> </div>
+                                </div>
+                                <div class="team-description">
+                                    <p>{{$item->intro}}</p>
+                                </div>
+                                <hr class="my-0">
+                            </div>
+                        </div>
+                </div>
+                @endif
+                <?php $i++; ?>
+                @endforeach
             </div>
         </div>
+        <!-- End Blog  -->
     </div>
-    <!-- End Products  -->
-
-    <!-- Start Blog  -->
-    <div class="latest-blog">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="title-all text-center">
-                        <h1>BÀI VIẾT</h1>
-                        <p>Rồi cũng xong thôi</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-lg-4 col-xl-4">
-                    <div class="blog-box">
-                        <div class="blog-img">
-                            <img class="img-fluid" src="images/blog-img.jpg" alt="" />
-                        </div>
-                        <div class="blog-content">
-                            <div class="title-blog">
-                                <h3>Fusce in augue non nisi fringilla</h3>
-                                <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
-                            </div>
-                            <ul class="option-blog">
-                                <li><a href="#"><i class="far fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fas fa-eye"></i></a></li>
-                                <li><a href="#"><i class="far fa-comments"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-4">
-                    <div class="blog-box">
-                        <div class="blog-img">
-                            <img class="img-fluid" src="images/blog-img-01.jpg" alt="" />
-                        </div>
-                        <div class="blog-content">
-                            <div class="title-blog">
-                                <h3>Fusce in augue non nisi fringilla</h3>
-                                <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
-                            </div>
-                            <ul class="option-blog">
-                                <li><a href="#"><i class="far fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fas fa-eye"></i></a></li>
-                                <li><a href="#"><i class="far fa-comments"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 col-xl-4">
-                    <div class="blog-box">
-                        <div class="blog-img">
-                            <img class="img-fluid" src="images/blog-img-02.jpg" alt="" />
-                        </div>
-                        <div class="blog-content">
-                            <div class="title-blog">
-                                <h3>Fusce in augue non nisi fringilla</h3>
-                                <p>Nulla ut urna egestas, porta libero id, suscipit orci. Quisque in lectus sit amet urna dignissim feugiat. Mauris molestie egestas pharetra. Ut finibus cursus nunc sed mollis. Praesent laoreet lacinia elit id lobortis.</p>
-                            </div>
-                            <ul class="option-blog">
-                                <li><a href="#"><i class="far fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fas fa-eye"></i></a></li>
-                                <li><a href="#"><i class="far fa-comments"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End Blog  -->
-
+</div>
 @endsection

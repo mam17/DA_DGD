@@ -68,7 +68,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" style="background-color: blueviolet;  color: white; " class="btn btn-default">Thêm thương hiệu</button>
+                            <button type="submit" style="background-color: blueviolet;  color: white; " class="btn btn-default">Thêm bài viết</button>
                             <form>
                     </div>
                 </div>
