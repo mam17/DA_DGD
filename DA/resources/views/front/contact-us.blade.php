@@ -68,21 +68,23 @@
             <div class="col-lg-4 col-sm-12">
                 <div class="contact-info-left">
                     <h2>CONTACT INFO</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent urna diam, maximus ut
-                        ullamcorper quis, placerat id eros. Duis semper justo sed condimentum rutrum. Nunc tristique
-                        purus turpis. Maecenas vulputate. </p>
                     <ul>
                         <li>
-                            <p><i class="fas fa-map-marker-alt"></i>Address: Michael I. Days 9000 <br>Preston Street
-                                Wichita,<br> KS 87213 </p>
-                        </li>
-                        <li>
-                            <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+1-888705770">+1-888 705 770</a>
+                            <p><i class="fas fa-map-marker-alt"></i>Address: TTTM LONG TƠ Đường Lam Sơn, TK Lê
+                                xá 1, Thị trấn Nông Cống, Nông Cống, Thanh Hoá, Thanh Hóa, Vietnam
                             </p>
                         </li>
                         <li>
+                            <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:096 488 82 89">096 488 82
+                                    89</a></p>
+                        </li>
+                        <li>
                             <p><i class="fas fa-envelope"></i>Email: <a
-                                    href="mailto:contactinfo@gmail.com">contactinfo@gmail.com</a></p>
+                                    href="mailto:longtoplaza@gmail.com">longtoplaza@gmail.com</a></p>
+                        </li>
+                        <li>
+                            <p><i class="fab fa-facebook"></i> <a
+                                    href="https://www.facebook.com/longtoplaza">Facebook</a></p>
                         </li>
                     </ul>
                 </div>
@@ -92,6 +94,21 @@
 </div>
 <!-- End Cart -->
 
+@section('feed')
 
+<div class="main-instagram owl-carousel owl-theme">
+    @foreach($pro as $item)
+    <div class="item">
+        <div class="ins-inner-box">
+            <img style="height: 200px;" src="{{asset('uploads/images/product/'.$item->image)}}" alt="" />
+            <div class="hov-in">
+                <a href="{{route('index.getProduct')}}"><i class="fab fa-back"></i></a>
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>
+
+@endsection
 
 @endsection

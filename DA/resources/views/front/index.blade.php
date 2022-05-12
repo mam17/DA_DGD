@@ -28,50 +28,6 @@
 </div>
 <!-- End Slider -->
 
-<!-- Start Categories  -->
-<div class="categories-shop">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="/front/assets/images/categories_img_01.jpg" alt="" />
-                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="/front/assets/images/categories_img_02.jpg" alt="" />
-                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                <div class="shop-cat-box">
-                    <img class="img-fluid" src="/front/assets/images/categories_img_03.jpg" alt="" />
-                    <a class="btn hvr-hover" href="#">Lorem ipsum dolor</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End Categories -->
-
-<div class="box-add-products">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="offer-box-products">
-                    <img class="img-fluid" src="/front/assets/images/add-img-01.jpg" alt="" />
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-12">
-                <div class="offer-box-products">
-                    <img class="img-fluid" src="/front/assets/images/add-img-02.jpg" alt="" />
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Start Products  -->
 <div class="products-box">
     <div class="container">
@@ -96,120 +52,129 @@
         </div>
 
         <div class="row special-list">
-
-        @foreach($product as $item)
-                <div class="col-lg-3 col-md-6 special-grid all">
-                    <div class="products-single fix">
-                        <div class="box-img-hover">
-                            <div class="type-lb">
-                                <p class="sale">Sale</p>
-                            </div>
-                            <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
-                                class="img-fluid" alt="Image">
-                            <div class="mask-icon">
-                                <ul>
-                                    <li><a href="#"
-                                            data-toggle="tooltip" data-placement="right" title="View"><i
-                                                class="fas fa-eye"></i></a></li>
-                                </ul>
-                                <a class="cart add-cart" href="#">Thêm vào giỏ
-                                    hàng</a>
-                            </div>
+            @foreach($product as $item)
+            <div class="col-lg-3 col-md-6 special-grid all">
+                <div class="products-single fix">
+                    <div class="box-img-hover">
+                        @if($item->discount !=0)
+                        <div class="type-lb">
+                            <p class="sale">Sale</p>
                         </div>
-                        <div class="why-text">
-                            <h4 style="text-align: center;">{{$item->name_pr}}</h4>
-                            <h4 style="color: red; text-align: center;">{{$item->brand->name_bra}}</h4>
-                            @if($item->discount != 0)
-                            <h4><del style="color: chocolate;">{{number_format($item->price)}}
-                                    VNĐ</h5>
-                                    <h5 style="text-align: center;">
-                                </del>{{number_format($item->discount)}} VNĐ</h5>
-                                @else
-                                <div style="padding-top: 33px;">
-                                    <h5>{{number_format($item->price)}} VNĐ</h5>
-                                </div>
-                                @endif
+                        @endif
+                        @if($item->status != 0)
+                        <div class="type-lb">
+                            <p class="new">Nổi bật</p>
+                        </div>
+                        @endif
+                        <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
+                            class="img-fluid" alt="Image">
+                        <div class="mask-icon">
+                            <ul>
+                                <li><a href="{{ route('index.getProductDetail', ['product_slug' => $item->slug, 'product_id' => $item->id]) }}"
+                                        data-toggle="tooltip" data-placement="right" title="View"><i
+                                            class="fas fa-eye"></i></a></li>
+                            </ul>
+                            <a class="cart add-cart" href="#" onclick="addCart({{ $item->id }})"
+                                data-id="{{route('cart.addCart',[$item->id] )}}">Thêm vào giỏ
+                                hàng</a>
                         </div>
                     </div>
+                    <div class="why-text">
+                        <h4 style="text-align: center;">{{$item->name_pr}}</h4>
+                        <h4 style="color: red; text-align: center;">{{$item->brand->name_bra}}</h4>
+                        @if($item->discount != 0)
+                        <h4><del style="color: chocolate;">{{number_format($item->price)}}
+                                VNĐ</h5>
+                                <h5 style="text-align: center;">
+                            </del>{{number_format($item->discount)}} VNĐ</h5>
+                            @else
+                            <div style="padding-top: 33px;">
+                                <h5>{{number_format($item->price)}} VNĐ</h5>
+                            </div>
+                            @endif
+                    </div>
                 </div>
+            </div>
             @endforeach
-         
+
             @foreach($sale as $item)
-                <div class="col-lg-3 col-md-6 special-grid best-seller">
-                    <div class="products-single fix">
-                        <div class="box-img-hover">
-                            <div class="type-lb">
-                                <p class="sale">Sale</p>
-                            </div>
-                            <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
-                                class="img-fluid" alt="Image">
-                            <div class="mask-icon">
-                                <ul>
-                                    <li><a href="#"
-                                            data-toggle="tooltip" data-placement="right" title="View"><i
-                                                class="fas fa-eye"></i></a></li>
-                                </ul>
-                                <a class="cart add-cart" href="#" >Thêm vào giỏ
-                                    hàng</a>àng</a>
-                            </div>
+            <div class="col-lg-3 col-md-6 special-grid best-seller">
+                <div class="products-single fix">
+                    <div class="box-img-hover">
+                        <div class="type-lb">
+                            <p class="sale">Sale</p>
                         </div>
-                        <div class="why-text">
-                            <h4 style="text-align: center;">{{$item->name_pr}}</h4>
-                            <h4 style="color: red; text-align: center;">{{$item->brand->name_bra}}</h4>
-                            @if($item->discount != 0)
-                            <h4><del style="color: chocolate;">{{number_format($item->price)}}
-                                    VNĐ</h5>
-                                    <h5 style="text-align: center;">
-                                </del>{{number_format($item->discount)}} VNĐ</h5>
-                                @else
-                                <div style="padding-top: 33px;">
-                                    <h5>{{number_format($item->price)}} VNĐ</h5>
-                                </div>
-                                @endif
+                        <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
+                            class="img-fluid" alt="Image">
+                        <div class="mask-icon">
+                            <ul>
+                                <li><a href="{{ route('index.getProductDetail', ['product_slug' => $item->slug, 'product_id' => $item->id]) }}"
+                                        data-toggle="tooltip" data-placement="right" title="View"><i
+                                            class="fas fa-eye"></i></a></li>
+                            </ul>
+                            <a class="cart add-cart" href="#" onclick="addCart({{ $item->id }})"
+                                data-id="{{route('cart.addCart',[$item->id] )}}">Thêm vào giỏ
+                                hàng</a>àng</a>
                         </div>
                     </div>
+                    <div class="why-text">
+                        <h4 style="text-align: center;">{{$item->name_pr}}</h4>
+                        <h4 style="color: red; text-align: center;">{{$item->brand->name_bra}}</h4>
+                        @if($item->discount != 0)
+                        <h4><del style="color: chocolate;">{{number_format($item->price)}}
+                                VNĐ</h5>
+                                <h5 style="text-align: center;">
+                            </del>{{number_format($item->discount)}} VNĐ</h5>
+                            @else
+                            <div style="padding-top: 33px;">
+                                <h5>{{number_format($item->price)}} VNĐ</h5>
+                            </div>
+                            @endif
+                    </div>
                 </div>
+            </div>
             @endforeach
 
             @foreach($status as $item)
-                <div class="col-lg-3 col-md-6 special-grid top-featured">
-                    <div class="products-single fix">
-                        <div class="box-img-hover">
-                            <div class="type-lb">
-                                <p class="new">Nổi bật</p>
-                            </div>
-                            <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
-                                class="img-fluid" alt="Image">
-                            <div class="mask-icon">
-                                <ul>
-                                    <li><a href="#"
-                                            data-toggle="tooltip" data-placement="right" title="View"><i
-                                                class="fas fa-eye"></i></a></li>
-                                </ul>
-                                <a class="cart add-cart" href="#">Thêm vào giỏ
-                                    hàng</a>
-                            </div>
+            <div class="col-lg-3 col-md-6 special-grid top-featured">
+                <div class="products-single fix">
+                    <div class="box-img-hover">
+                        <div class="type-lb">
+                            <p class="new">Nổi bật</p>
                         </div>
-                        <div class="why-text">
-                            <h4 style="text-align: center;">{{$item->name_pr}}</h4>
-                            <h4 style="color: red; text-align: center;">{{$item->brand->name_bra}}</h4>
-                            @if($item->discount != 0)
-                            <h4><del style="color: chocolate;">{{number_format($item->price)}}
-                                    VNĐ</h5>
-                                    <h5 style="text-align: center;">
-                                </del>{{number_format($item->discount)}} VNĐ</h5>
-                                @else
-                                <div style="padding-top: 33px;">
-                                    <h5>{{number_format($item->price)}} VNĐ</h5>
-                                </div>
-                                @endif
+                        <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
+                            class="img-fluid" alt="Image">
+                        <div class="mask-icon">
+                            <ul>
+                                <li><a href="{{ route('index.getProductDetail', ['product_slug' => $item->slug, 'product_id' => $item->id]) }}"
+                                        data-toggle="tooltip" data-placement="right" title="View"><i
+                                            class="fas fa-eye"></i></a></li>
+                            </ul>
+                            <a class="cart add-cart" href="#" onclick="addCart({{ $item->id }})"
+                                data-id="{{route('cart.addCart',[$item->id] )}}">Thêm vào giỏ
+                                hàng</a>
                         </div>
                     </div>
+                    <div class="why-text">
+                        <h4 style="text-align: center;">{{$item->name_pr}}</h4>
+                        <h4 style="color: red; text-align: center;">{{$item->brand->name_bra}}</h4>
+                        @if($item->discount != 0)
+                        <h4><del style="color: chocolate;">{{number_format($item->price)}}
+                                VNĐ</h5>
+                                <h5 style="text-align: center;">
+                            </del>{{number_format($item->discount)}} VNĐ</h5>
+                            @else
+                            <div style="padding-top: 33px;">
+                                <h5>{{number_format($item->price)}} VNĐ</h5>
+                            </div>
+                            @endif
+                    </div>
                 </div>
+            </div>
             @endforeach
-              
+
         </div>
-        
+
         <!-- End Products  -->
 
         <!-- Start Blog  -->
@@ -230,7 +195,8 @@
                     @if ($i < 5) <div class="item">
                         <div class="products-single fix">
                             <div class="hover-team">
-                                <div class="our-team"> <a href="{{route('index')}}"><img
+                                <div class="our-team"> <a
+                                        href="{{ route('index.getBlog',['blog_id'=>$item->id, 'blog_slug'=>$item->slug]) }}"><img
                                             src="{{asset('uploads/images/blog/'.$item->image)}}" style="height: 250px;"
                                             alt="" /></a>
                                     <div class="team-content">
@@ -253,4 +219,20 @@
         <!-- End Blog  -->
     </div>
 </div>
+@section('feed')
+
+<div class="main-instagram owl-carousel owl-theme">
+    @foreach($pro as $item)
+    <div class="item">
+        <div class="ins-inner-box">
+            <img style="height: 200px;" src="{{asset('uploads/images/product/'.$item->image)}}" alt="" />
+            <div class="hov-in">
+                <a href="{{route('index.getProduct')}}"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>
+
+@endsection
 @endsection

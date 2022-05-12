@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
     public function index() {
-        return view('front.cart');
+        $pro = Product::all();
+        return view('front.cart', compact('pro'));
     }
-
     public function addCart(Request $request, $id) {
         $product = Product::find($id);
         if ($product != null) {

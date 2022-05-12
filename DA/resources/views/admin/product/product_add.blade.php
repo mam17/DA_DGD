@@ -51,13 +51,13 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Số lượng</label>
-                                <input type="number" class="form-control" id="exampleInputEmail1" name="quantity" placeholder="Nhập số lượng">
+                                <input type="number" class="form-control" id="exampleInputEmail1" name="quantity"  placeholder="Nhập số lượng">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Số lượng đã bán</label>
-                                <input type="number" class="form-control" id="exampleInputEmail1" name="sold" placeholder="Nhập số lượng đã bán">
+                                <input type="number" class="form-control" id="exampleInputEmail1" name="sold" value="0" placeholder="Nhập số lượng đã bán">
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <label>Giảm giá</label>
-                                <input type="number" class="form-control" name="discount" placeholder="Nhập mã giảm giá" />
+                                <input type="number" class="form-control" name="discount" placeholder="Giảm giá còn..." value="0"/>
                             </div>
                         </div>
                     </div>

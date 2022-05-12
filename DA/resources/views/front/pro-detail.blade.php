@@ -45,25 +45,18 @@
                         @else
                         <h5>{{number_format($product->price)}} VNĐ</h5>
                         @endif
-                        <p class="available-stock"><span> More than 20 available / <a href="#">Số lượng đã bãn:
-                                    {{$product->sold}}</a></span>
+                        <p class="available-stock"><span> Số lượng đã bãn:
+                                {{$product->sold}}</span>
                         <p>
 
                         <div style="display: flex;  flex-wrap: wrap;">
-                            <h4>Mô tả</h4> {{$product->description}}
+                            <h4>Mô tả:
+                                <p> {{$product->description}}</p>
+                            </h4>
                         </div>
-                        <ul>
-                            <li>
-                                <div class="form-group quantity-box">
-                                    <label class="control-label">Chọn số lượng</label>
-                                    <input class="form-control" value="0" min="0" max="20" type="number">
-                                </div>
-                            </li>
-                        </ul>
-
                         <div class="price-box-bar">
                             <div class="cart-and-bay-btn">
-                                <a class="btn hvr-hover" data-fancybox-close="" href="#">Mua ngay</a>
+
                                 <a class="btn hvr-hover" href="#" onclick="addCart({{ $product->id }})"
                                     data-id="{{ $product->id }}">Thêm vào giỏ hàng</a>
 
@@ -95,10 +88,6 @@
                                         <li><a href="{{ route('index.getProductDetail', ['product_slug' => $item->slug, 'product_id' => $item->id])  }}"
                                                 data-toggle="tooltip" data-placement="right" title="View"><i
                                                     class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i
-                                                    class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                     </ul>
                                     <a class="cart add-cart">Thêm vào giỏ
                                         hàng</a>
@@ -131,5 +120,20 @@
     </div>
 </div>
 <!-- End Cart -->
+@section('feed')
 
+<div class="main-instagram owl-carousel owl-theme">
+    @foreach($pro as $item)
+    <div class="item">
+        <div class="ins-inner-box">
+            <img style="height: 200px;" src="{{asset('uploads/images/product/'.$item->image)}}" alt="" />
+            <div class="hov-in">
+                <a href="{{route('index.getProduct')}}"><i class="fab fa-back"></i></a>
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>
+
+@endsection
 @endsection

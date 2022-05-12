@@ -27,17 +27,20 @@ Route::get('/contact-us', [PageController::class, 'getContact'])->name('index.ge
 Route::get('brand/{slug}&id={id}', [PageController::class, 'getBrand'])->name('index.getBrand');
 
 Route::get('/product/{product_slug}&id={product_id}', [PageController::class, 'getProductDetail'])->name('index.getProductDetail');
-Route::get('/gallery', [PageController::class, 'getGallery'])->name('index.getGallery');
 
 Route::get('/slide', [PageController::class, 'getSlide'])->name('index.getSlide');
+
+Route::get('/blog/{blog_slug}&id={blog_id}', [PageController::class, 'getBlog'])->name('index.getBlog');
 
 Route::get('/product', [PageController::class, 'getProduct'])->name('index.getProduct');
 
 Route::get('/my_acc', [PageController::class, 'getAccount'])->name('index.getAccount');
 
 
-
-Route::get('/check-out', [PageController::class, 'getCheckOut'])->name('index.getCheckOut');
+Route::prefix('checkout')->middleware('payment')->group(function () {
+    Route::post('/checkout', [CheckOutController::class, 'postCheckout'])->name('index.postCheckout');
+    Route::get('/check-out', [CheckOutController::class, 'getCheckout'])->name('index.getCheckOut');
+});
 
 Route::prefix('cart')->group(function (){
     Route::get('/', [CartController::class, 'index'])->name('cart.index');
@@ -49,6 +52,30 @@ Route::prefix('cart')->group(function (){
 
     Route::get('/update-cart/{id}/{quanty}', [CartController::class, 'updateCart'])->name('cart.UpdateItemListCart');
 
+});
+
+//userlogin
+Route::get('/login', [PageController::class, 'getLogin'])->name('index.login');
+Route::post('/login', [AuthController::class, 'postUserLogin'])->name('index.postUserLogin');
+
+Route::get('/register', [PageController::class, 'getRegister'])->name('index.register');
+Route::post('/register', [AuthController::class, 'postUserRegister'])->name('index.postUserRegister');
+
+Route::get('/logout', [AuthController::class, 'userLogout'])->name('index.logout');
+
+Route::post('/otp',[OtpController::class,'postOtp'])->name('postotp');
+Route::get('/otp', [OtpController::class,'getOtp'])->name('getotp');   
+Route::get('/resend_otp', [OtpController::class,'resend'])->name('resend');  
+
+Route::prefix('nguoi-dung')->middleware('user.login')->group(function () {
+    Route::get('/thong-tin', [AuthController::class, 'getProfile'])->name('index.getProfile');
+    Route::post('/thong-tin', [AuthController::class, 'editProfile'])->name('index.editProfile');
+
+    Route::get('/huy-don-hang/{id}', [HoaDonXuatController::class, 'cancelOrder'])->name('admin.hoadonxuat.cancelOrder');
+
+    Route::get('/doi-mat-khau', [AuthController::class, 'postUserPassword'])->name('index.postUserPassword');
+
+    Route::get('/dang-xuat', [AuthController::class, 'userLogout'])->name('index.userLogout');
 });
 
 // admin
@@ -66,7 +93,7 @@ Route::prefix('admin')->middleware('admin.login')->group(function () {
 
 
     Route::prefix('customer')->group(function () {
-        Route::get('/', [CustomerController::class, 'index'])->name('admin.khachhang.index');
+        Route::get('/', [CustomerController::class, 'index'])->name('admin.customer.index');
     });
 
     Route::prefix('staff')->middleware('admin.role')->group(function () {

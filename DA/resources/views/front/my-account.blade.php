@@ -195,5 +195,20 @@
     </div>
 </div>
 <!-- End My Account -->
+@section('feed')
 
+<div class="main-instagram owl-carousel owl-theme">
+    @foreach($pro as $item)
+    <div class="item">
+        <div class="ins-inner-box">
+            <img style="height: 200px;" src="{{asset('uploads/images/product/'.$item->image)}}" alt="" />
+            <div class="hov-in">
+                <a href="{{route('index.getProduct')}}"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>
+
+@endsection
 @endsection

@@ -44,10 +44,6 @@
                                     <li><a href="{{ route('index.getProductDetail', ['product_slug' => $item->slug, 'product_id' => $item->id]) }}"
                                             data-toggle="tooltip" data-placement="right" title="View"><i
                                                 class="fas fa-eye"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i
-                                                class="fas fa-sync-alt"></i></a></li>
-                                    <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                            title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                 </ul>
                                 <a class="cart add-cart" href="#" onclick="addCart({{ $item->id }})"
                                     data-id="{{route('cart.addCart',[$item->id] )}}">Thêm vào giỏ
@@ -101,10 +97,6 @@
                                         <li><a href="{{ route('index.getProductDetail', ['product_slug' => $item->slug, 'product_id' => $item->id]) }}"
                                                 data-toggle="tooltip" data-placement="right" title="View"><i
                                                     class="fas fa-eye"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right" title="Compare"><i
-                                                    class="fas fa-sync-alt"></i></a></li>
-                                        <li><a href="#" data-toggle="tooltip" data-placement="right"
-                                                title="Add to Wishlist"><i class="far fa-heart"></i></a></li>
                                     </ul>
                                     <a class="cart add-cart" href="#" onclick="addCart({{ $item->id }})"
                                     data-id="{{route('cart.addCart',[$item->id] )}}">Thêm vào giỏ
@@ -145,5 +137,20 @@
 </div>
 @endif
 </div>
+@section('feed')
 
+<div class="main-instagram owl-carousel owl-theme">
+    @foreach($pro as $item)
+    <div class="item">
+        <div class="ins-inner-box">
+            <img style="height: 200px;" src="{{asset('uploads/images/product/'.$item->image)}}" alt="" />
+            <div class="hov-in">
+                <a href="{{route('index.getProduct')}}"><i class="fab fa-back"></i></a>
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>
+
+@endsection
 @endsection

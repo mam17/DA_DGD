@@ -19,6 +19,10 @@ class AuthController extends Controller
     public function adminLogin() {
         return view('admin.layouts.login');
     }
+
+    public function adminProfile() {
+        return view('admin.profile.index');
+    }
     
     public function postAdminLogin(Request $request) {
         $this->validate($request,[
@@ -46,7 +50,7 @@ class AuthController extends Controller
 
     public function userLogout() {
         Auth::logout();
-        return redirect()->route('index');
+        return redirect()->route('index.login');
     }
 
     public function postUserLogin(Request $request) {
@@ -67,8 +71,47 @@ class AuthController extends Controller
         }
     }
 
-    public function adminProfile() {
-        return view('admin.profile.index');
+    public function postUserRegister(Request $request) {
+      $this->validate(
+        $request,
+        [
+            'name' => 'required',
+            'email' => 'required|unique:users,email',
+            'password' => 'required|min:6|max:32',
+            'phone' => 'required',
+            'birth_day' => 'required',
+            'gender' => 'required',
+            'address' => 'required',
+        ],
+        [
+            "name.required" => "Hãy nhập tên!",
+            "email.required" => "Hãy nhập email!",
+            "email.unique" => "Email đã tồn tại!",
+            "password.required" => "Hãy nhập password!",
+            "password.min" => "Độ dài mật khẩu lớn hơn 6!",
+            "password.max" => "Độ dài mật khẩu nhỏ hơn 32!",
+            "phone.required" => "Hãy nhập số điện thoại!",
+            "birth_day.required" => "Hãy nhập ngày sinh!",
+            "gender.required" => "Hãy chọn giới tính!",
+            "address.required" => "Hãy nhập địa chỉ!",
+        ]
+    );
+
+    $user = new User;
+    $user->role = 3;
+    $user->email = $request->email;
+    $user->password = bcrypt($request->password);
+    $user->save();
+
+    $kh = new Customer();
+    $kh->user_id = $user->id;
+    $kh->name = $request->name;
+    $kh->phone = $request->phone;
+    $kh->birth_day = $request->birth_day;
+    $kh->gender = $request->gender;
+    $kh->address = $request->address;
+    $kh->save();
+    return redirect()->route('index.login')->with('thongbao', 'Đăng ký thành công thành công!');
     }
 
 }

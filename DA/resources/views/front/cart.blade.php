@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h2>Cart</h2>
+                <h2>Giỏ hàng</h2>
                 <ul class="breadcrumb">
                     <li class="breadcrumb-item"><a href="{{route('index.getProduct')}}">Sản phẩm</a></li>
                     <li class="breadcrumb-item active">Giỏ hàng</li>
@@ -21,8 +21,8 @@
 <div class="cart-box-main">
     <div class="container" id="list-cart">
         <div class="row">
-            <div class="col-lg-12" >
-                <div class="table-main table-responsive" >
+            <div class="col-lg-12">
+                <div class="table-main table-responsive">
                     <table class="table">
                         <thead>
                             <tr>
@@ -75,7 +75,6 @@
                                 <th colspan="6" style="text-align: center;">Bạn chưa đặt sản phẩm nào!</th>
                             </tr>
                             @endif
-
                         </tbody>
                     </table>
                 </div>
@@ -112,7 +111,6 @@
                             @endif
                         </div>
                     </div>
-
             </div>
             @endif
             <?php $i++; ?>
@@ -120,15 +118,11 @@
             @endif
         </div>
         <div class="col-12 d-flex shopping-box"><a href="{{route('index.getCheckOut')}}"
-                class="ml-auto btn hvr-hover">Thanh toán</a>
+               id="paycheck" class="ml-auto btn hvr-hover">Thanh toán</a>
         </div>
     </div>
 </div>
 </div>
 <!-- End Cart -->
-
-@endsection
-
-@section('script')
 
 @endsection
