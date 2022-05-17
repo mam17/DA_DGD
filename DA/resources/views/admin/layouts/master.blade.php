@@ -34,7 +34,7 @@
 
     
     @stack('scripts')
-    
+    @yield('static')
 </body>
 
 </html>

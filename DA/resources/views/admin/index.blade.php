@@ -18,7 +18,7 @@
                 <div class="panel panel-yellow">
                     <div class="panel-heading">
                         <div class="row">
-                            <div class="huge" style="font-size: 25px; text-align: center;">QUẢN LÝ DANH MỤC</div>
+                            <div class="huge" style="font-size: 20px; text-align: center;">{{count($category)}} DANH MỤC</div>
                             <div></div>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="row">
-                            <div class="huge" style="font-size: 25px;text-align: center;">QUẢN LÝ SẢN PHẨM</div>
+                            <div class="huge" style="font-size: 20px;text-align: center;"> {{count($product)}} SẢN PHẨM</div>
                             <div></div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                 <div class="panel panel-red">
                     <div class="panel-heading">
                         <div class="row">
-                            <div class="huge" style="font-size: 25px;text-align: center;">QUẢN LÝ THƯƠNG HIỆU</div>
+                            <div class="huge" style="font-size: 20px;text-align: center;"> {{count($brand)}} THƯƠNG HIỆU</div>
                             <div></div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                 <div class="panel panel-green">
                     <div class="panel-heading">
                         <div class="row">
-                            <div class="huge" style="font-size: 25px;text-align: center;">QUẢN LÝ BÀI VIẾT</div>
+                            <div class="huge" style="font-size: 20px;text-align: center;">{{count($blog)}} BÀI VIẾT</div>
                             <div></div>
                         </div>
                     </div>
@@ -87,13 +87,67 @@
             </div>
             <div class="col-lg-3 col-md-6">
                 <div class="panel panel-green">
-                    <div class="panel-heading">
+                    <div class="panel-heading" style="background-color: brown;">
                         <div class="row">
-                            <div class="huge" style="font-size: 25px;text-align: center;">QUẢN LÝ SLIDE</div>
+                            <div class="huge" style="font-size: 20px;text-align: center;">{{count($slide)}} SLIDE</div>
                             <div></div>
                         </div>
                     </div>
                     <a href="{{ route('admin.slide.index') }}">
+                        <div class="panel-footer">
+                            <span class="pull-left">Truy cập</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-green">
+                    <div class="panel-heading" style="background-color: coral;">
+                        <div class="row">
+                            <div class="huge" style="font-size: 20px;text-align: center;">{{count($order)}} ĐƠN HÀNG</div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a href="{{ route('admin.checkout.index') }}">
+                        <div class="panel-footer">
+                            <span class="pull-left">Truy cập</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-green">
+                    <div class="panel-heading" style="background-color: dimgrey;">
+                        <div class="row">
+                            <div class="huge" style="font-size: 20px;text-align: center;">{{count($staff)}} NHÂN VIÊN</div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a href="{{ route('admin.checkout.index') }}">
+                        <div class="panel-footer">
+                            <span class="pull-left">Truy cập</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-green">
+                    <div class="panel-heading" style="background-color: darkorange;">
+                        <div class="row">
+                            <div class="huge" style="font-size: 20px;text-align: center;">{{count($customer)}} TK KHÁCH HÀNG</div>
+                            <div></div>
+                        </div>
+                    </div>
+                    <a href="{{ route('admin.checkout.index') }}">
                         <div class="panel-footer">
                             <span class="pull-left">Truy cập</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

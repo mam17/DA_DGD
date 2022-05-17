@@ -1,5 +1,9 @@
 @extends('admin.layouts.master')
 
+@section('head')
+    <title>Thêm sản phẩm</title>
+@endsection
+
 @section('content')
 
 <div id="page-wrapper">

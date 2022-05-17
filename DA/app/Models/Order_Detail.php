@@ -8,13 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Order_Detail extends Model
 {
     use HasFactory;
-    protected $table = 'order_detail';
+    protected $table = 'order_details';
     protected $fillable = [
         'order_id',
         'product_id',
         'price',
-        'quantity',
-        'discount',
+        'quanty',
     ];
     public function oder() {
         return $this->belongsTo(Order::class, 'order_id');

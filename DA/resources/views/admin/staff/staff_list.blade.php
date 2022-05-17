@@ -73,7 +73,7 @@
                                         <td>{{ $item->staff->address}}</td>
                                         <td>
                                             <a class="btn btn-warning btn-xs" href="{{ route('admin.staff.edit', ['id' => $item->id]) }}" ​><i class="fa fa-edit"></i> Sửa</a>
-                                            <a class="btn btn-danger btn-xs" href="{{ route('admin.staff.destroy', ['id' => $item->id]) }}" ​><i class="fa fa-edit"></i> Xoá</a>
+                                            <a class="btn btn-danger btn-xs"  onclick="return ConfirmDelete()" href="{{ route('admin.staff.destroy', ['id' => $item->id]) }}" ​><i class="fa fa-edit"></i> Xoá</a>
                                         </td>
                                     </tr>
                                     @endforeach

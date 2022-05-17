@@ -5,6 +5,13 @@
 
 <!-- Start Slider -->
 <div id="slides-shop" class="cover-slides">
+    @if (session('success'))
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        {{ session('success') }}
+    </div>
+    @endif
     <ul class="slides-container">
         @foreach($slide as $item)
         <li class="text-center">
@@ -34,107 +41,13 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="title-all text-center">
-                    <h1>SẢN PHẨM</h1>
+                    <h1>SẢN PHẨM NỔI BẬT</h1>
                     <p>Đồ gia dụng, không thể thiếu trong mọi gia đình</p>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="special-menu text-center">
-                    <div class="button-group filter-button-group">
-                        <button class="active" data-filter=".all">All</button>
-                        <button data-filter=".top-featured">Nổi bật</button>
-                        <button data-filter=".best-seller">Đang saller</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="row special-list">
-            @foreach($product as $item)
-            <div class="col-lg-3 col-md-6 special-grid all">
-                <div class="products-single fix">
-                    <div class="box-img-hover">
-                        @if($item->discount !=0)
-                        <div class="type-lb">
-                            <p class="sale">Sale</p>
-                        </div>
-                        @endif
-                        @if($item->status != 0)
-                        <div class="type-lb">
-                            <p class="new">Nổi bật</p>
-                        </div>
-                        @endif
-                        <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
-                            class="img-fluid" alt="Image">
-                        <div class="mask-icon">
-                            <ul>
-                                <li><a href="{{ route('index.getProductDetail', ['product_slug' => $item->slug, 'product_id' => $item->id]) }}"
-                                        data-toggle="tooltip" data-placement="right" title="View"><i
-                                            class="fas fa-eye"></i></a></li>
-                            </ul>
-                            <a class="cart add-cart" href="#" onclick="addCart({{ $item->id }})"
-                                data-id="{{route('cart.addCart',[$item->id] )}}">Thêm vào giỏ
-                                hàng</a>
-                        </div>
-                    </div>
-                    <div class="why-text">
-                        <h4 style="text-align: center;">{{$item->name_pr}}</h4>
-                        <h4 style="color: red; text-align: center;">{{$item->brand->name_bra}}</h4>
-                        @if($item->discount != 0)
-                        <h4><del style="color: chocolate;">{{number_format($item->price)}}
-                                VNĐ</h5>
-                                <h5 style="text-align: center;">
-                            </del>{{number_format($item->discount)}} VNĐ</h5>
-                            @else
-                            <div style="padding-top: 33px;">
-                                <h5>{{number_format($item->price)}} VNĐ</h5>
-                            </div>
-                            @endif
-                    </div>
-                </div>
-            </div>
-            @endforeach
-
-            @foreach($sale as $item)
-            <div class="col-lg-3 col-md-6 special-grid best-seller">
-                <div class="products-single fix">
-                    <div class="box-img-hover">
-                        <div class="type-lb">
-                            <p class="sale">Sale</p>
-                        </div>
-                        <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
-                            class="img-fluid" alt="Image">
-                        <div class="mask-icon">
-                            <ul>
-                                <li><a href="{{ route('index.getProductDetail', ['product_slug' => $item->slug, 'product_id' => $item->id]) }}"
-                                        data-toggle="tooltip" data-placement="right" title="View"><i
-                                            class="fas fa-eye"></i></a></li>
-                            </ul>
-                            <a class="cart add-cart" href="#" onclick="addCart({{ $item->id }})"
-                                data-id="{{route('cart.addCart',[$item->id] )}}">Thêm vào giỏ
-                                hàng</a>àng</a>
-                        </div>
-                    </div>
-                    <div class="why-text">
-                        <h4 style="text-align: center;">{{$item->name_pr}}</h4>
-                        <h4 style="color: red; text-align: center;">{{$item->brand->name_bra}}</h4>
-                        @if($item->discount != 0)
-                        <h4><del style="color: chocolate;">{{number_format($item->price)}}
-                                VNĐ</h5>
-                                <h5 style="text-align: center;">
-                            </del>{{number_format($item->discount)}} VNĐ</h5>
-                            @else
-                            <div style="padding-top: 33px;">
-                                <h5>{{number_format($item->price)}} VNĐ</h5>
-                            </div>
-                            @endif
-                    </div>
-                </div>
-            </div>
-            @endforeach
-
+            <div class="row"></div>
             @foreach($status as $item)
             <div class="col-lg-3 col-md-6 special-grid top-featured">
                 <div class="products-single fix">
@@ -172,9 +85,7 @@
                 </div>
             </div>
             @endforeach
-
         </div>
-
         <!-- End Products  -->
 
         <!-- Start Blog  -->

@@ -13,7 +13,6 @@ class CategoryController extends Controller
         $categories = Category::all();
         return view('admin.category.cate_list', compact('categories'));
     }
-
     
     public function create()
     {
@@ -72,4 +71,6 @@ class CategoryController extends Controller
         $category->delete();
         return redirect()->route('admin.category.index')->with('success', 'Xóa thành công');
     }
+
+  
 }

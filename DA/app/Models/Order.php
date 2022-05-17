@@ -11,7 +11,7 @@ class Order extends Model
     protected $table = 'orders';
     protected $fillable = [
         'staff_id',
-        'cus_id',
+        'customer_id',
         'created_date',
         'total_money',
     ];

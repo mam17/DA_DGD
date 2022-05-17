@@ -43,12 +43,16 @@
                             <h5>
                         </del>{{number_format($product->discount)}} VNĐ</h5>
                         @else
-                        <h5>{{number_format($product->price)}} VNĐ</h5>
+                        <h5>Giá: {{number_format($product->price)}} VNĐ</h5>
                         @endif
-                        <p class="available-stock"><span> Số lượng đã bãn:
-                                {{$product->sold}}</span>
+                        <p class="available-stock">Đã bán: <span>{{$product->sold}} </span>sản phẩm
                         <p>
-
+                        <p class="available-stock">Số lượng trong kho: <span>
+                                {{$product->quantity}} </span>sản phẩm
+                        <p>
+                        <p class="available-stock">Quà tặng: <span>
+                                {{$product->gift}} </span>
+                        <p>
                         <div style="display: flex;  flex-wrap: wrap;">
                             <h4>Mô tả:
                                 <p> {{$product->description}}</p>

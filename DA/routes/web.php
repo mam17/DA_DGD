@@ -34,13 +34,14 @@ Route::get('/blog/{blog_slug}&id={blog_id}', [PageController::class, 'getBlog'])
 
 Route::get('/product', [PageController::class, 'getProduct'])->name('index.getProduct');
 
-Route::get('/my_acc', [PageController::class, 'getAccount'])->name('index.getAccount');
-
+Route::get('/search', [PageController::class, 'getSearch'])->name('index.getSearch');
 
 Route::prefix('checkout')->middleware('payment')->group(function () {
-    Route::post('/checkout', [CheckOutController::class, 'postCheckout'])->name('index.postCheckout');
-    Route::get('/check-out', [CheckOutController::class, 'getCheckout'])->name('index.getCheckOut');
+    Route::post('/checkout', [PageController::class, 'postCheckout'])->name('index.postCheckout');
+    Route::get('/check-out', [PageController::class, 'getCheckout'])->name('index.getCheckOut');
 });
+
+Route::get('/notify', [PageController::class, 'getSuccess'])->name('index.getSuccess');
 
 Route::prefix('cart')->group(function (){
     Route::get('/', [CartController::class, 'index'])->name('cart.index');
@@ -54,6 +55,19 @@ Route::prefix('cart')->group(function (){
 
 });
 
+Route::prefix('profile')->middleware('user.login')->group(function () {
+    Route::get('/my_acc', [PageController::class, 'getAccount'])->name('index.getAccount');
+
+    Route::get('/profile', [AuthController::class, 'getProfile'])->name('index.getProfile');
+    Route::post('/profile', [AuthController::class, 'editProfile'])->name('index.editProfile');
+
+    Route::get('/cancel-order/{id}', [CheckOutController::class, 'cancelOrder'])->name('admin.checkout.cancelOrder');
+
+    Route::post('/change-password', [AuthController::class, 'postUserPassword'])->name('index.postUserPassword');
+
+    Route::get('/logout', [AuthController::class, 'userLogout'])->name('index.logout');
+});
+
 //userlogin
 Route::get('/login', [PageController::class, 'getLogin'])->name('index.login');
 Route::post('/login', [AuthController::class, 'postUserLogin'])->name('index.postUserLogin');
@@ -61,22 +75,12 @@ Route::post('/login', [AuthController::class, 'postUserLogin'])->name('index.pos
 Route::get('/register', [PageController::class, 'getRegister'])->name('index.register');
 Route::post('/register', [AuthController::class, 'postUserRegister'])->name('index.postUserRegister');
 
-Route::get('/logout', [AuthController::class, 'userLogout'])->name('index.logout');
+
 
 Route::post('/otp',[OtpController::class,'postOtp'])->name('postotp');
 Route::get('/otp', [OtpController::class,'getOtp'])->name('getotp');   
 Route::get('/resend_otp', [OtpController::class,'resend'])->name('resend');  
 
-Route::prefix('nguoi-dung')->middleware('user.login')->group(function () {
-    Route::get('/thong-tin', [AuthController::class, 'getProfile'])->name('index.getProfile');
-    Route::post('/thong-tin', [AuthController::class, 'editProfile'])->name('index.editProfile');
-
-    Route::get('/huy-don-hang/{id}', [HoaDonXuatController::class, 'cancelOrder'])->name('admin.hoadonxuat.cancelOrder');
-
-    Route::get('/doi-mat-khau', [AuthController::class, 'postUserPassword'])->name('index.postUserPassword');
-
-    Route::get('/dang-xuat', [AuthController::class, 'userLogout'])->name('index.userLogout');
-});
 
 // admin
 //Public Routes
@@ -91,6 +95,7 @@ Route::prefix('admin')->middleware('admin.login')->group(function () {
 
     Route::get('/staff_profile', [AuthController::class, 'adminProfile'])->name('admin.profile');
 
+    Route::get('show', [AdminController::class, 'show'])->name('admin.index');
 
     Route::prefix('customer')->group(function () {
         Route::get('/', [CustomerController::class, 'index'])->name('admin.customer.index');
@@ -203,4 +208,21 @@ Route::prefix('admin')->middleware('admin.login')->group(function () {
 
         Route::get('delete/{id}', [SlideController::class, 'destroy'])->name('admin.slide.destroy');
     });
+    
+    Route::prefix('checkout')->group(function () {
+        Route::get('/', [CheckOutController::class, 'index'])->name('admin.checkout.index');
+
+        Route::get('/accept-order/{id}', [CheckOutController::class, 'acceptOrder'])->name('admin.checkout.acceptOrder');
+
+        Route::get('/start-ship/{id}', [CheckOutController::class, 'startShip'])->name('admin.checkout.startShip');
+        Route::get('/cancel-ship/{id}', [CheckOutController::class, 'cancelShip'])->name('admin.checkout.cancelShip');
+
+        Route::get('/cancel-order/{id}', [CheckOutController::class, 'cancelOrder'])->name('admin.checkout.AdmincancelOrder');
+
+        Route::get('/accept-payment/{id}', [CheckOutController::class, 'acceptPayment'])->name('admin.checkout.acceptPayment');
+        Route::get('/review/{id}', [CheckOutController::class, 'getView'])->name('admin.checkout.getView');
+        Route::get('/print/{id}', [CheckOutController::class, 'print'])->name('admin.checkout.print');
+    });
+
+    
 });

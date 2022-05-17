@@ -72,4 +72,5 @@ class BrandController extends Controller
         $brand->delete();
         return redirect()->route('admin.brand.index')->with('success', 'Xóa thành công');
     }
+
 }

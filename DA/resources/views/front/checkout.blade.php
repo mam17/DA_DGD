@@ -33,27 +33,27 @@
                             <label for="username">Họ tên *</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="username" value="{{ Auth::user()->customer->name }}"
-                                    placeholder="" required>
+                                    placeholder="" name="name" required>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="username">Email *</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" id="username" value="{{ Auth::user()->email }}"
-                                    placeholder="" required>
+                                    placeholder="" name="email" required>
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="email">Địa chỉ *</label>
                             <input type="email" class="form-control" id="email"
-                                value="{{ Auth::user()->customer->address }}" placeholder="">
+                                value="{{ Auth::user()->customer->address }}" name="address" placeholder="">
                         </div>
                         <div class="mb-3">
                             <label for="email">Số điện thoại *</label>
                             <input type="email" class="form-control" id="email"
-                                value="{{ Auth::user()->customer->phone }}" placeholder="">
+                                value="{{ Auth::user()->customer->phone }}" name="phone" placeholder="">
                         </div>
-                        
+                        <button class="btn btn-primary btn-lg btn-block"  type="submit">Đặt hàng</button>
                     </form>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 d-flex shopping-box"> <a href="checkout.html" class="ml-auto btn hvr-hover">Đặt hàng</a> </div>
+                    
                 </div>
             </div>
         </div>

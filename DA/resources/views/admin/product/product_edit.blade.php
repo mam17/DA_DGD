@@ -1,5 +1,9 @@
 @extends('admin.layouts.master')
 
+@section('head')
+    <title>Sửa sản phẩm</title>
+@endsection
+
 @section('content')
 <div id="page-wrapper">
     <div class="container-fluid">

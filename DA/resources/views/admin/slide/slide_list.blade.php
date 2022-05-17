@@ -57,8 +57,8 @@
                                                 <img src="{{asset('uploads/images/slide/'.$slide->image)}}" alt="" srcset="" width="120px" height="120px">
                                             </td>
                                             <td class="center">
-                                                <a class="btn btn-success btn-xs btn-edit" href="{{route('admin.slide.edit', $slide->id, $slide->id)}}"><i class="fa fa-pencil fa-fw"></i>Cập nhật</a>
-                                                <a class="btn btn-danger btn-xs" href="{{route('admin.slide.destroy', $slide->id)}}"><i class="fa fa-trash-o  fa-fw"></i> Xóa</a>
+                                                <a class="btn btn-success btn-xs btn-edit"  href="{{route('admin.slide.edit', $slide->id, $slide->id)}}"><i class="fa fa-pencil fa-fw"></i>Cập nhật</a>
+                                                <a class="btn btn-danger btn-xs"  onclick="return ConfirmDelete()" href="{{route('admin.slide.destroy', $slide->id)}}"><i class="fa fa-trash-o  fa-fw"></i> Xóa</a>
                                             </td>
                                         </tr>
                                         @endforeach

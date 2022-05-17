@@ -19,16 +19,6 @@
                 <div class="right-product-box">
                     <div class="product-item-filter row">
                         <div class="col-12 col-sm-8 text-center text-sm-left">
-                            <div class="toolbar-sorter-right">
-                                <span>Sort by </span>
-                                <select id="basic" class="selectpicker show-tick form-control" data-placeholder="$ USD">
-                                    <option data-display="Select">Chọn</option>
-                                    <option value="1">Nổi bật</option>
-                                    <option value="2">Giá từ cao đến thấp</option>
-                                    <option value="3">Giá từ thấp đến cao</option>
-                                    <option value="4">Đang sale</option>
-                                </select>
-                            </div>
                             <p>Hiển thị dạng</p>
                         </div>
                         <div class="col-12 col-sm-4 text-center text-sm-right">
@@ -51,8 +41,8 @@
             <div class="col-xl-3 col-lg-3 col-sm-12 col-xs-12 sidebar-shop-left">
                 <div class="product-categori">
                     <div class="search-product">
-                        <form action="#">
-                            <input class="form-control" placeholder="Search here..." type="text">
+                        <form action="{{ route('index.getSearch') }}" method="GET">
+                            <input class="form-control" placeholder="Search here..." type="text"  name="input_search" id="noi-dung">
                             <button type="submit"> <i class="fa fa-search"></i> </button>
                         </form>
                     </div>

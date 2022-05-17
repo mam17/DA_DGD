@@ -1,5 +1,9 @@
 @extends('admin.layouts.master')
 
+@section('head')
+    <title>Danh sách sản phẩm</title>
+@endsection
+
 @section('content')
 
 <link rel="stylesheet" href="https://cdn.datatables.net/fixedcolumns/3.3.3/css/fixedColumns.bootstrap.min.css">
@@ -96,7 +100,7 @@
                                             <td style="text-align:center;">
                                                 <span>
                                                     <a href="{{route('admin.product.edit', $product->id)}}" class="btn btn-warning btn-xs "> <i class="fa fa-edit"></i> Cập nhật</a>
-                                                    <a href="{{route('admin.product.destroy', $product->id)}}" class="btn btn-danger btn-xs "><i class="fa fa-trash"></i> Xoá</a>
+                                                    <a href="{{route('admin.product.destroy', $product->id)}}"  onclick="return ConfirmDelete()" class="btn btn-danger btn-xs "><i class="fa fa-trash"></i> Xoá</a>
                                                 </span>
                                             </td>
                                         </tr>

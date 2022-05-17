@@ -32,9 +32,9 @@
                                 <p class="sale">Sale</p>
                             </div>
                             @endif
-                            @if($item->status != 0)
+                            @if($item->quantity == 0)
                             <div class="type-lb">
-                                <p class="new">Nổi bật</p>
+                                <p class="new">Hết hàng</p>
                             </div>
                             @endif
                             <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
@@ -50,7 +50,7 @@
                                     hàng</a>
                             </div>
                         </div>
-                        <div class="why-text">
+                        <div class="why-text" style="padding: 8px;">
                             <h4 style="text-align: center;">{{$item->name_pr}}</h4>
                             <h4 style="color: red; text-align: center;">{{$item->brand->name_bra}}</h4>
                             @if($item->discount != 0)
@@ -77,7 +77,7 @@
                     <?php $i = 1; ?>
                     @if (count($product) > 0)
                     @foreach ($product as $item)
-                    @if ($i < 7) <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                         <div class="products-single fix">
                             <div class="box-img-hover">
                                 @if($item->discount !=0)
@@ -85,9 +85,9 @@
                                     <p class="sale">Sale</p>
                                 </div>
                                 @endif
-                                @if($item->status != 0)
+                                @if($item->quantity == 0)
                                 <div class="type-lb">
-                                    <p class="new">Nổi bật</p>
+                                    <p class="new">Hết hàng</p>
                                 </div>
                                 @endif
                                 <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 195px;"
@@ -99,43 +99,42 @@
                                                     class="fas fa-eye"></i></a></li>
                                     </ul>
                                     <a class="cart add-cart" href="#" onclick="addCart({{ $item->id }})"
-                                    data-id="{{route('cart.addCart',[$item->id] )}}">Thêm vào giỏ
+                                        data-id="{{route('cart.addCart',[$item->id] )}}">Thêm vào giỏ
                                         hàng</a>
                                 </div>
                             </div>
                         </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                    <div class="why-text full-width">
-                        <h4>{{$item->name_pr}}</h4>
-                        <h4 style="color: red;">{{$item->brand->name_bra}}</h4>
-                        @if($item->discount != 0)
-                        <div class="row">
-                            <h4 style="text-align: center;"><del
-                                    style="color: chocolate;">{{number_format($item->price)}}
-                                    VNĐ</h5>
-                                    <h5 style="text-align: center;">
-                                </del>{{number_format($item->discount)}} VNĐ</h5>
-                        </div>
-                        @else
-                        <h5 style="text-align: center;">{{number_format($item->price)}} VNĐ</h5>
-                        @endif
-                        <div style="display: flex;  flex-wrap: wrap;">{{$item->description}} </div>
-                        
                     </div>
-                </div>
-                @endif
-                <?php $i++; ?>
-                @endforeach
-                @else
-                Không có sản phẩm
-                @endif
-            </div>
-        </div>
+                    <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
+                        <div class="why-text full-width">
+                            <h4>{{$item->name_pr}}</h4>
+                            <h4 style="color: red;">{{$item->brand->name_bra}}</h4>
+                            @if($item->discount != 0)
+                            <div class="row">
+                                <h4 style="text-align: center;"><del
+                                        style="color: chocolate;">{{number_format($item->price)}}
+                                        VNĐ</h5>
+                                        <h5 style="text-align: center;">
+                                    </del>{{number_format($item->discount)}} VNĐ</h5>
+                            </div>
+                            @else
+                            <h5 style="text-align: center;">{{number_format($item->price)}} VNĐ</h5>
+                            @endif
+                            <div style="display: flex;  flex-wrap: wrap;">{{$item->description}} </div>
 
+                        </div>
+                    </div>
+                    <?php $i++; ?>
+                    @endforeach
+                    @else
+                    Không có sản phẩm
+                    @endif
+                </div>
+            </div>
+
+        </div>
     </div>
-</div>
-@endif
+    @endif
 </div>
 @section('feed')
 

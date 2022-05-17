@@ -49,7 +49,7 @@
                     <a href="{{route('admin.slide.index')}}"><i class="fa fa-camera fa-fw"></i> Quản lý slide</a>
                 </li>
                 <li>
-                    <a href="{{route('admin.slide.index')}}"><i class="fa fa-camera fa-fw"></i> Quản lý đơn đặt hàng</a>
+                    <a href="{{route('admin.checkout.index')}}"><i class="fa fa-camera fa-fw"></i> Quản lý đơn đặt hàng</a>
                 </li>
                 <li>
                     <a href="{{route('admin.customer.index')}}"><i class="fa fa-users fa-fw"></i> Quản lý khách hàng</a>

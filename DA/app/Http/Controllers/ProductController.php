@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Customer;
+use App\Models\Order;
 use App\Models\Product;
+use App\Models\Slide;
+use App\Models\Staff;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Validator;
@@ -35,8 +40,6 @@ class ProductController extends Controller
         $messages = [
             'name_pr.required' => "Nhập tên sản phẩm",
             'name_pr.unique' => "Trùng tên sản phẩm",
-            'category_id.required' => "Chọn danh mục sản phẩm",
-            'brand_id.required' => "Chọn thương hiệu sản phẩm",
             'quantity.required' => "Hãy nhập số lượng",
             'quantity.numeric' => 'Hãy nhập số!',
             'quantity.min' => 'Số lượng lớn hơn 1!',
@@ -157,4 +160,6 @@ class ProductController extends Controller
         $product->delete();
         return redirect()->route('admin.product.index')->with('success', 'Xóa thành công');
     }
+
+
 }

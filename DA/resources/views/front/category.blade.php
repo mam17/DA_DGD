@@ -31,9 +31,9 @@
                                 <p class="sale">Sale</p>
                             </div>
                             @endif
-                            @if($item->status != 0)
+                            @if($item->quantity == 0)
                             <div class="type-lb">
-                                <p class="new">Nổi bật</p>
+                                <p class="new">Hết hàng</p>
                             </div>
                             @endif
                             <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
@@ -87,9 +87,9 @@
                                     <p class="sale">Sale</p>
                                 </div>
                                 @endif
-                                @if($item->status != 0)
+                                @if($item->quantity == 0)
                                 <div class="type-lb">
-                                    <p class="new">Nổi bật</p>
+                                    <p class="new">Hết hàng</p>
                                 </div>
                                 @endif
                                 <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 195px;"

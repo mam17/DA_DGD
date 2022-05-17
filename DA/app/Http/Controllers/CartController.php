@@ -15,15 +15,20 @@ class CartController extends Controller
         return view('front.cart', compact('pro'));
     }
     public function addCart(Request $request, $id) {
-        $product = Product::find($id);
+        $product = DB::table('products')->where('id', $id)->first();
+        
         if ($product != null) {
-            $oldCart = Session('Cart') ? Session('Cart') : null;
-            $newCart = new Cart($oldCart);
-            $newCart->addCart($product, $id);
-
-            $request->session()->put('Cart', $newCart);
+            $oldcart = Session('Cart') ? Session('Cart') : null;
+            if ((!$oldcart || $oldcart->totalQuanty < $product->quantity )&& $product->quantity >0){
+                $newcart = new Cart($oldcart);
+                $newcart->addCart($product, $id);
+                $request->session()->put('Cart', $newcart);
+                return view('front.cart');
+            }
+            else{
+                return false;
+            }
         }
-        return view('front.cart', compact('newCart'));
     }
 
     public function getDelete(Request $request, $id) {
@@ -36,17 +41,30 @@ class CartController extends Controller
         } else {
             $request->Session()->forget('Cart');
         }
-
         return view('front.layouts.list_cart');
     }
 
     public function updateCart(Request $request, $id, $quanty) {
-        $oldCart = Session('Cart') ? Session('Cart') : null;
-        $newCart = new Cart($oldCart);
-        $newCart->UpdateItemCart($id, $quanty);
+        $product = DB::table('products')->where('id', $id)->first();
+        
+        if ($product != null) {
+            $oldCart = Session('Cart') ? Session('Cart') : null;
+            if ((!$oldCart || $oldCart->totalQuanty < $product->quantity )&& $product->quantity >0){
+                $newCart = new Cart($oldCart);
+                $newCart->UpdateItemCart($id, $quanty);
+                $request->Session()->put('Cart', $newCart);
+                return view('front.layouts.list_cart');
+            }
+            else{
+                return false;
+            }
+        }
+        // $oldCart = Session('Cart') ? Session('Cart') : null;
+        // $newCart = new Cart($oldCart);
+        // $newCart->UpdateItemCart($id, $quanty);
 
-        $request->Session()->put('Cart', $newCart);
+        // $request->Session()->put('Cart', $newCart);
 
-        return view('front.layouts.list_cart');
+        // return view('front.layouts.list_cart');
     }
 }

@@ -31,22 +31,21 @@
                                 <p class="sale">Sale</p>
                             </div>
                             @endif
-                            @if($item->status != 0)
+                            @if($item->quantity == 0)
                             <div class="type-lb">
-                                <p class="new">Nổi bật</p>
+                                <p class="new">Hết hàng</p>
                             </div>
                             @endif
                             <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
                                 class="img-fluid" alt="Image">
                             <div class="mask-icon">
                                 <ul>
-                                    <li><a href=""
-                                            data-toggle="tooltip" data-placement="right" title="View"><i
+                                    <li><a href="" data-toggle="tooltip" data-placement="right" title="View"><i
                                                 class="fas fa-eye"></i></a></li>
 
                                 </ul>
                                 <a class="cart add-cart" href="#" onclick="addCart({{ $item->id }})"
-                                    data-id="{{route('cart.addCart',[$item->id] )}}" >Thêm vào giỏ
+                                    data-id="{{route('cart.addCart',[$item->id] )}}">Thêm vào giỏ
                                     hàng</a>
                             </div>
                         </div>
@@ -87,22 +86,21 @@
                                     <p class="sale">Sale</p>
                                 </div>
                                 @endif
-                                @if($item->status != 0)
+                                @if($item->quantity == 0)
                                 <div class="type-lb">
-                                    <p class="new">Nổi bật</p>
+                                    <p class="new">Hết hàng</p>
                                 </div>
                                 @endif
                                 <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
                                     class="img-fluid" alt="Image">
                                 <div class="mask-icon">
                                     <ul>
-                                        <li><a href=""
-                                                data-toggle="tooltip" data-placement="right" title="View"><i
+                                        <li><a href="" data-toggle="tooltip" data-placement="right" title="View"><i
                                                     class="fas fa-eye"></i></a></li>
 
                                     </ul>
                                     <a class="cart add-cart" href="#" onclick="addCart({{ $item->id }})"
-                                    data-id="{{route('cart.addCart',[$item->id] )}}">Thêm vào giỏ
+                                        data-id="{{route('cart.addCart',[$item->id] )}}">Thêm vào giỏ
                                         hàng</a>
                                 </div>
                             </div>
@@ -138,7 +136,6 @@
 </div>
 </div>
 
-@section('feed')
 @section('feed')
 
 <div class="main-instagram owl-carousel owl-theme">

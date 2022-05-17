@@ -21,7 +21,8 @@
     <link rel="apple-touch-icon" href="/front/assets/images/longto.PNG">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="/front/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+
     <!-- Site CSS -->
     <link rel="stylesheet" href="/front/assets/css/style.css">
     <!-- Responsive CSS -->
@@ -50,7 +51,7 @@
                                 <li class="nav-item dropdown" style="background: #ffb307;">
                                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                        style="color: black"><i class="fas fa-user fa-fw"></i>{{ Auth::user()->customer->name }}</a>
+                                        style="color: black"><i class="fas fa-user fa-fw"></i></a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                                         @if (Auth::check())
                                         <div class="dropdown-divider"></div>
@@ -129,16 +130,8 @@
                         <li class="nav-item"><a href="{{route('index.getProduct')}}" class="nav-link">Sản phẩm</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{route('index.getAccount')}}">Tài khoản</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{route('index.getContact')}}">Liên hệ</a></li>
-                    </ul>
-                </div>
-                <!-- /.navbar-collapse -->
-
-                <!-- Start Atribute Navigation -->
-                <div class="attr-nav">
-                    <ul>
-                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
                         <li class="side-menu">
-                            <a href="{{route('cart.index')}}">
+                            <a class="nav-link" href="{{route('cart.index')}}">
                                 <i class="fa fa-shopping-bag"></i>
                                 @if (Session::has("Cart") != null)
                                 <span class="badge"
@@ -151,6 +144,14 @@
                         </li>
                     </ul>
                 </div>
+                <!-- /.navbar-collapse -->
+
+                <!-- Start Atribute Navigation -->
+                <div class="attr-nav">
+                    <ul>
+                        <li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
+                    </ul>
+                </div>
                 <!-- End Atribute Navigation -->
             </div>
         </nav>
@@ -161,11 +162,13 @@
     <!-- Start Top Search -->
     <div class="top-search">
         <div class="container">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="fa fa-search"></i></span>
-                <input type="text" class="form-control" placeholder="Search">
-                <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
-            </div>
+            <form action="{{ route('index.getSearch') }}" method="GET">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-search"></i></span>
+                    <input type="text" class="form-control" name="input_search" id="noi-dung" placeholder="Search">
+                    <span class="input-group-addon close-search"><i class="fa fa-times"></i></span>
+                </div>
+            </form>
         </div>
     </div>
     <!-- End Top Search -->
@@ -254,7 +257,8 @@
     <script src="/front/assets/js/jquery.superslides.min.js"></script>
     <script src="/front/assets/js/bootstrap-select.js"></script>
     <script src="/front/assets/js/inewsticker.js"></script>
-    <script src="/front/assets/js/bootsnav.js."></script>
+
+    <script src="/front/assets/js/bootsnav.js"></script>
     <script src="/front/assets/js/images-loded.min.js"></script>
     <script src="/front/assets/js/isotope.min.js"></script>
     <script src="/front/assets/js/owl.carousel.min.js"></script>
@@ -279,8 +283,12 @@
             url: '/cart/add-cart/' + id,
             type: 'GET',
         }).done(function(response) {
-            RenderLishCart(response);
-            alertify.success('Thêm thành công vào giỏ hàng');
+            if (response) {
+                RenderLishCart(response);
+                alertify.success('Đã thêm mới sản phẩm');
+            } else {
+                alertify.warning('Sản phẩm đã hết');
+            }
         })
     }
 
@@ -301,8 +309,12 @@
             url: '/cart/update-cart/' + id + '/' + $("#select-" + id).val(),
             type: 'GET',
         }).done(function(response) {
-            RenderLishCart(response);
-            alertify.success('Đã cập nhật sản phẩm thành công');
+            if (response) {
+                RenderLishCart(response);
+                alertify.success('Đã cập nhật sản phẩm thành công');
+            } else {
+                alertify.warning('Quá số lượng sản phẩm còn lại');
+            }
         })
     }
 

@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->id('staff_id');
-            $table->id('cus_id');
-            $table->dateTime('created_date');
-            $table->float('total_money');
+            $table->integer('staff_id')->nullable();
+            $table->integer('customer_id');
+            $table->datetime('created_date')->nullable();
+            $table->double('total_money')->nullable()->defaut(0);
+            $table->integer('status')->nullable()->defaut(0);
             $table->timestamps();
         });
     }

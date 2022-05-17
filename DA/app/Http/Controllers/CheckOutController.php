@@ -5,61 +5,102 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Order_Detail;
-use App\Models\Product;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use PDF;
 
 class CheckOutController extends Controller
 {
-  
-  public function postCheckout(Request $request)
+  public function index()
   {
-      $this->validate($request, [
-          'name' => 'required',
-          'gender' => 'required',
-          'address' => 'required',
-          'email' => 'required',
-          'phone' => 'required'
-      ], [
-          'name.required' => 'Bạn chưa nhập Usernane',
-          'gender.required' => 'Bạn chưa chọn giới tính',
-          'address.required' => 'Bạn chưa nhập địa chỉ',
-          'email.required' => 'Bạn chưa nhập Email',
-          'phonenumber.required' => 'Bạn chưa nhập So dien thoai'
-      ]);
-      $customer = new Customer;
-      $customer->name = $request->name;
-      $customer->gender = $request->gender;
-      $customer->address = $request->address;
-      $customer->email = $request->email;
-      $customer->phone = $request->phone;
-      $customer->save();
-      $cart = Session::get('Cart');
-      $order = new Order;
-      $order->cus_id = $customer->id;
-      $order->user_id = 1;
-      $order->total = $cart->totalPrice;
-      $order->date = \Carbon\Carbon::now();
-      $order->save();
-      foreach ($cart->products as $key => $value) {
-          $orderdetail = new Order_Detail;
-          $orderdetail->order_id = $order->id;
-          $orderdetail->product_id = $key;
-          $orderdetail->price = $value['price'] / $value['quanty'];
-          $orderdetail->quanty = $value['quanty'];
-          $orderdetail->save();
+      $order = Order::orderBy('id', 'desc')->get();
+      $viewData = [
+          'order' => $order,
+      ];
+      return view('admin.order.list_order', $viewData);
+  }
 
-          $product = Product::find($key);
-          $product->quanty -= $value['quanty'];
-          $product->save();
-      }
-      $request->session()->forget('Cart');
-      return redirect(route('index'));
-  }
-  public function getCheckout()
+  public function acceptOrder($id) 
   {
-    $pro = Product::all();
-    $infor = Customer::all();
-    return view('front.checkout', compact('infor', 'pro'));
+      $order = Order::find($id);
+      $order->status = 1;
+      $order->update();
+      return redirect()->back()->with('success', 'Xác nhận đơn hàng DH'.$order->id.' thành công!');
   }
+
+  public function startShip($id) 
+  {
+      $order = Order::find($id);
+      $order->status = 2;
+      $order->update();
+      return redirect()->back()->with('success', 'Đơn hàng DH'.$order->id.' đã bắt đầu được giao!');
+  }
+
+  public function acceptPayment($id) 
+  {
+      $order = Order::find($id);
+      $order->status = 3;
+      $order->update();
+      return redirect()->back()->with('success', 'Đơn hàng DH'.$order->id.' đã được thanh toán!');
+  }
+
+  public function cancelOrder($id) 
+  {
+    //   $product = DB::table('products')->where('id', $id)->first();
+    //   $product->quantity = +1;
+    //   $product->update();
+      
+      $order = Order::find($id);
+      if($order->status == 0 && $order->customer_id == Auth::user()->customer->id ) {
+          $order->status = -1;
+          $order->update();
+          return redirect()->back()->with('success', 'Đơn hàng DH'.$order->id.' đã được huỷ!');
+      } else if($order->status == -2) {
+          $order->status = -1;
+          $order->update();
+          return redirect()->back()->with('success', 'Đơn hàng DH'.$order->id.' đã được huỷ!');
+      }
+
+      return redirect()->back()->with('loi', 'Lỗi huỷ đơn hàng!');
+  }
+
+  public function cancelShip($id) 
+  {
+      $order = Order::find($id);
+      $order->status = -2;
+      $order->update();
+      return redirect()->back()->with('success', 'Đơn hàng DH'.$order->id.' giao hàng không thành công, chờ giao lại!');
+  }
+
+  public function getView($id)
+  {
+      $order = Order::find($id);
+      $respone = array('data' => $order);
+
+      $customer = $order->customer;
+      $respone['data']['customer'] = $customer;
+
+      foreach ($order->order_detail as $item) {
+          $respone['data']['order_detail'] = $item;
+          if($item->product) {
+              foreach ($item->product as $item2) {
+              }
+          } else {
+              $respone['data']['order_detail']['product'] = "Không tồn tại";
+          }
+      }
+      return $respone;
+  }
+
+  public function print($id)
+  {
+      $order = Order::find($id);
+      $order_detail = Order_Detail::where('order_id', $id)->get();
+
+      $pdf = PDF::loadView('admin.order.bill_print', compact('order', 'order_detail'));
+
+      $title = 'HD'.$id.'-ngay-xuat-'.$order->created_date.'.pdf';
+    return $pdf->stream($title);
+  }
+ 
 }

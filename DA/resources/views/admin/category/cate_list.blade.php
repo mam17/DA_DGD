@@ -36,7 +36,7 @@
                             <td style=" width: 30px; text-align: center;">{{ $i++ }}</td>
                             <td>{{$category->name_cate}}</td>
                             <td class="center">
-                                <a class="btn btn-danger btn-xs" href="{{route('admin.category.destroy', $category->id)}}"><i class="fa fa-trash-o  fa-fw"></i> Xóa</a>
+                                <a class="btn btn-danger btn-xs" onclick="return ConfirmDelete()" href="{{route('admin.category.destroy', $category->id)}}"><i class="fa fa-trash-o  fa-fw"  ></i> Xóa</a>
                             </td>
                             <td class="center">
                                 <a class="btn btn-success btn-xs btn-edit" href="{{route('admin.category.edit', $category->id, $category->id)}}"><i class="fa fa-pencil fa-fw"></i>Sửa</a>
@@ -70,7 +70,7 @@
                                                 <label>Tên danh mục</label>
                                                 <input class="form-control" name="name_cate" placeholder="Nhập tên danh mục" />
                                             </div>
-                                            <button style="background-color: blueviolet;  color: white; " type="submit" class="btn btn-default">Thêm danh mục</button>
+                                            <button style="background-color: gray;  color: white; " type="submit" class="btn btn-default">Thêm danh mục</button>
                                             <form>
                                     </div>
                                 </div>

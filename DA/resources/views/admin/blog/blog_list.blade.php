@@ -64,7 +64,7 @@
                                             <td>{{$blog->created_date}}</td>
                                             <td style="text-align:center;">
                                                 <span>
-                                                    <a class="btn btn-danger btn-xs" href="{{route('admin.blog.destroy', $blog->id)}}"><i class="fa fa-trash-o  fa-fw"></i> Xóa</a>
+                                                    <a class="btn btn-danger btn-xs" href="{{route('admin.blog.destroy', $blog->id)}}"  onclick="return ConfirmDelete()"><i class="fa fa-trash-o  fa-fw"></i> Xóa</a>
                                                     <a class="btn btn-success btn-xs btn-edit" href="{{route('admin.blog.edit', $blog->id, $blog->id)}}"><i class="fa fa-pencil fa-fw"></i>Sửa</a>
                                                 </span>
                                             </td>

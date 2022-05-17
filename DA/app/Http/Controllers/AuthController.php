@@ -95,23 +95,68 @@ class AuthController extends Controller
             "gender.required" => "Hãy chọn giới tính!",
             "address.required" => "Hãy nhập địa chỉ!",
         ]
-    );
+        );
 
-    $user = new User;
-    $user->role = 3;
-    $user->email = $request->email;
-    $user->password = bcrypt($request->password);
-    $user->save();
+        $user = new User;
+        $user->role = 3;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->save();
 
-    $kh = new Customer();
-    $kh->user_id = $user->id;
-    $kh->name = $request->name;
-    $kh->phone = $request->phone;
-    $kh->birth_day = $request->birth_day;
-    $kh->gender = $request->gender;
-    $kh->address = $request->address;
-    $kh->save();
-    return redirect()->route('index.login')->with('thongbao', 'Đăng ký thành công thành công!');
+        $kh = new Customer();
+        $kh->user_id = $user->id;
+        $kh->name = $request->name;
+        $kh->phone = $request->phone;
+        $kh->birth_day = $request->birth_day;
+        $kh->gender = $request->gender;
+        $kh->address = $request->address;
+        $kh->save();
+        return redirect()->route('index.login')->with('thongbao', 'Đăng ký thành công thành công!');
     }
+    
+    public function editProfile(Request $request) {
+        $customer = Customer::find(Auth::user()->customer->id);
+        $this->validate($request,[
+            'name' => 'required',
+            'phone' => 'required',
+            'birth_day' => 'required',
+            'address' => 'required',
+        ], [
+            'name.required' => 'Bạn chưa nhập họ tên',
+            'phone.required' => 'Bạn chưa nhập số điện thoại',
+            'birth_day.required' => 'Bạn chưa nhập ngày sinh',
+            'address.required' => 'Bạn chưa nhập địa chỉ',
+        ]);
+        
+        $customer->name = $request->name;
+        $customer->phone = $request->phone;
+        $customer->birth_day = $request->birth_day;
+        $customer->address = $request->address;
+        $customer->update();
+        return redirect()->back()->with('thongbao', 'Cập nhật thông tin thành công');
+    } 
 
+    public function getProfile() {
+        $order = Order::where('customer_id', '=', Auth::user()->customer->id)->orderBy('id', 'desc')->get();
+        $viewData = [
+            'order' => $order,
+        ];
+        return view('pages.profile', $viewData);
+    } 
+    
+    public function postUserPassword(Request $request) {
+        $user = Auth::user();
+
+        if(!(Hash::check($request->oldPassword, $user->password))) {
+    		return redirect()->back()->with('loi', 'Sai mật khẩu cũ!');
+
+    	} else if(strcmp($request->oldPassword, $request->password) == 0){
+    		return redirect()->back()->with('loi', 'Mật khẩu mới trùng mật khẩu cũ!');
+
+    	}
+    	//change password
+    	$user->password = bcrypt($request->password);
+    	$user->update();
+        return redirect()->back()->with('thongbao', 'Thay đổi mật khẩu thành công!');
+    }
 }

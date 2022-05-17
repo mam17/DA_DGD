@@ -5,21 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Customer;
 use App\Models\Product;
 use App\Models\Slide;
 use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Models\Order_Detail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class PageController extends Controller
 {
    
     public function index()
     {
-        $product = Product::orderBy('id', 'desc')->limit(4)->get();
+        $product = Product::orderBy('id', 'desc')->paginate(4);
         $pro = Product::all();
         $blog = Blog::all();
         $slide = Slide::all();
-        $sale = Product::where('discount', '>', 0)->limit(4)->get();
-        $status = Product::where('status', 1)->limit(4)->get();
+        $sale = Product::where('discount', '>', 0)->paginate(4);
+        $status = Product::where('status', 1)->get();
         $viewData = [
             'product' => $product,
             'blog' => $blog,
@@ -107,10 +112,12 @@ class PageController extends Controller
     
     public function getAccount()
     {
+        $order = Order::where('customer_id', '=', Auth::user()->customer->id)->orderBy('id', 'desc')->get();
         $slide = Slide::all();
         $pro = Product::all();
         $viewData = [
             'slide' => $slide,
+            'order' => $order,
             'pro' => $pro
         ];
         return view('front.my-account', $viewData);
@@ -163,4 +170,81 @@ class PageController extends Controller
     {
         return view('front.layouts.login');
     }
+
+    public function getSearch(Request $request) {
+
+        $category = Category::where('name_cate', 'like', '%'.$request->input_search.'%')->first();
+        
+            if($category) {
+                $product = Product::where('category_id', '=', $category->id)->get();
+            } else {
+                $product = Product::where('name_pr', 'like', '%'.$request->input_search.'%')->get();
+            }
+        $slide = Slide::all();
+        $sale = Product::where('discount', '>', 0)->limit(4)->get();
+        $status = Product::where('status', 1)->limit(4)->get();
+        $pro = Product::all();
+        $blog = Blog::all();
+        $viewData = [
+            'product' => $product,
+            'slide' => $slide,
+            'sale' => $sale,
+            'status' => $status,
+            'pro' => $pro,
+            'blog' => $blog,
+        ];
+        return view('front.search', $viewData);
+    }
+
+    public function postCheckout(Request $request)
+    {
+       
+        $cart = Session::get('Cart');
+        
+        $order = new Order;
+        $order->customer_id = Auth::user()->customer->id;
+        $order->staff_id =  1;
+        $order->total_money = $cart->totalPrice;
+        $order->created_date = \Carbon\Carbon::now();
+        $order->save();
+  
+        foreach ($cart->products as $key => $value) {
+   
+            $orderdetail = new Order_Detail;
+            $orderdetail->order_id = $order->id;
+            $orderdetail->product_id = $key;
+            $orderdetail->price = $value['price'] / $value['quanty'];
+            $orderdetail->quanty = $value['quanty'];
+            $orderdetail->save();
+  
+            $product = Product::find($key);
+            $product->quantity -= $value['quanty'];
+            $product->sold += $value['quanty'];
+            $product->save();
+        }
+        $request->session()->forget('Cart');
+        return redirect()->route('index.getSuccess');
+        
+    }
+
+    public function getCheckout()
+    {
+      $pro = Product::all();
+      $infor = Customer::all();
+      return view('front.checkout', compact('infor', 'pro'));
+    }
+
+    public function getSuccess()
+    {
+        $pro = Product::all();
+        $blog = Blog::all();
+        $slide = Slide::all();
+        $viewData = [
+            'blog' => $blog,
+            'slide' => $slide,
+            'pro' => $pro
+        ];
+        return view('front.notify', $viewData);
+    }
+
 }
