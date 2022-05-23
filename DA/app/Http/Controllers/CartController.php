@@ -45,26 +45,14 @@ class CartController extends Controller
     }
 
     public function updateCart(Request $request, $id, $quanty) {
-        $product = DB::table('products')->where('id', $id)->first();
+
+        $oldCart = Session('Cart') ? Session('Cart') : null;
+
+        $newCart = new Cart($oldCart);
+        $newCart->UpdateItemCart($id, $quanty);
+        $request->Session()->put('Cart', $newCart);
         
-        if ($product != null) {
-            $oldCart = Session('Cart') ? Session('Cart') : null;
-            if ((!$oldCart || $oldCart->totalQuanty < $product->quantity )&& $product->quantity >0){
-                $newCart = new Cart($oldCart);
-                $newCart->UpdateItemCart($id, $quanty);
-                $request->Session()->put('Cart', $newCart);
-                return view('front.layouts.list_cart');
-            }
-            else{
-                return false;
-            }
-        }
-        // $oldCart = Session('Cart') ? Session('Cart') : null;
-        // $newCart = new Cart($oldCart);
-        // $newCart->UpdateItemCart($id, $quanty);
-
-        // $request->Session()->put('Cart', $newCart);
-
-        // return view('front.layouts.list_cart');
+        return view('front.layouts.list_cart');
+       
     }
 }

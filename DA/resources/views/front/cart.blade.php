@@ -1,5 +1,9 @@
 @extends('front.layouts.layout')
 
+@section('head')
+<title>Giỏ hàng</title>
+@endsection
+
 @section('content')
 <!-- Start All Title Box -->
 <div class="all-title-box">
@@ -30,13 +34,12 @@
                                 <th>Tên sản phẩm</th>
                                 <th>Giá</th>
                                 <th>Số lượng</th>
-                                <th>Tổng tiền</th>
-                                <th>Cập nhật</th>
                                 <th>Hủy</th>
                             </tr>
                         </thead>
                         <tbody>
                             @if (Session::has("Cart") != null)
+                            <?php $i = 1; ?>
                             @foreach (Session::get('Cart')-> products as $item)
                             <tr>
                                 <td class="thumbnail-img">
@@ -49,19 +52,15 @@
                                 <td class="price-pr">
                                     <p>{{number_format($item['productInfo']->price) }} VNĐ</p>
                                 </td>
-                                <td class="quantity-box">
-                                    <div id="pro-qty">
-                                        <input type="number" size="4" value="{{ $item['quanty'] }}" min="1" step="1"
-                                            class="c-input-text qty text" id="select-{{ $item['productInfo']->id }}">
-                                    </div>
+                                <td><select name="quanty" id="select-{{ $item['productInfo']->id }}"
+                                        data-idselect="{{ $item['productInfo']->id }}"
+                                        onchange="UpdateItemCart({{ $item['productInfo']->id }})">
+                                        @for ($i = 1; $i <= $item['productInfo']->quantity; $i++)
+                                            <option value="{{ $i }}" @if ($i==$item['quanty']) selected @endif>{{ $i }}
+                                            </option>
+                                            @endfor
                                 </td>
-                                <td class="total-pr">
-                                    <p>{{number_format( $item['price'] ) }} VNĐ</p>
-                                </td>
-                                <td>
-                                    <i class="fas fa-save" style="color: blue; cursor: pointer;"
-                                        onclick="UpdateItemCart({{ $item['productInfo']->id }});">Cập nhật</i>
-                                </td>
+                                
                                 <td class="remove-pr">
                                     <a href="#">
                                         <i class="fas fa-times" style="color: red; cursor: pointer;"
@@ -117,8 +116,8 @@
             @endforeach
             @endif
         </div>
-        <div class="col-12 d-flex shopping-box"><a href="{{route('index.getCheckOut')}}"
-               id="paycheck" class="ml-auto btn hvr-hover">Thanh toán</a>
+        <div class="col-12 d-flex shopping-box"><a href="{{route('index.getCheckOut')}}" id="paycheck"
+                class="ml-auto btn hvr-hover">Thanh toán</a>
         </div>
     </div>
 </div>

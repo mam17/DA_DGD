@@ -58,10 +58,11 @@
                 <li>
                     <a href="{{route('admin.staff.index')}}"><i class="fa fa-users fa-fw"></i> Quản lý nhân viên</a>
                 </li>
-                @endif
+                
                 <li>
                     <a href="{{ route('admin.statistic.index') }}"><i class="fa fa-group fa-fw"></i> Thống kê</a>
                 </li>
+                @endif
         </div>
         <!-- /.sidebar-collapse -->
     </div>

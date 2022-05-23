@@ -8,8 +8,6 @@
                         <th>Tên sản phẩm</th>
                         <th>Giá</th>
                         <th>Số lượng</th>
-                        <th>Tổng tiền</th>
-                        <th>Cập nhật</th>
                         <th>Hủy</th>
                     </tr>
                 </thead>
@@ -27,19 +25,15 @@
                         <td class="price-pr">
                             <p>{{$item['productInfo']->price }} VNĐ</p>
                         </td>
-                        <td class="quantity-box">
-                            <div id="pro-qty">
-                                <input type="number" size="4" value="{{ $item['quanty'] }}" min="1" step="1"
-                                    class="c-input-text qty text" id="select-{{ $item['productInfo']->id }}">
-                            </div>
+                        <td><select name="quanty" id="select-{{ $item['productInfo']->id }}"
+                                data-idselect="{{ $item['productInfo']->id }}"
+                                onchange="UpdateItemCart({{ $item['productInfo']->id }})">
+                                @for ($i = 1; $i <= $item['productInfo']->quantity; $i++)
+                                    <option value="{{ $i }}" @if ($i==$item['quanty']) selected @endif>{{ $i }}
+                                    </option>
+                                    @endfor
                         </td>
-                        <td class="total-pr">
-                            <p>{{number_format( $item['price'] ) }} VNĐ</p>
-                        </td>
-                        <td>
-                            <i class="fas fa-save" style="color: blue; cursor: pointer;"
-                                onclick="UpdateItemCart({{ $item['productInfo']->id }});">Cập nhật</i>
-                        </td>
+                        
                         <td class="remove-pr">
                             <a href="#">
                                 <i class="fas fa-times" style="color: red; cursor: pointer;"

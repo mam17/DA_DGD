@@ -18,8 +18,13 @@
                 <div class="panel panel-yellow">
                     <div class="panel-heading">
                         <div class="row">
-                            <div class="huge" style="font-size: 20px; text-align: center;">{{count($category)}} DANH MỤC</div>
-                            <div></div>
+                            <div class="col-xs-3">
+                                <i class="fa fa-cubes fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" style="font-size: 20px; text-align: center;">{{count($category)}} DANH MỤC</div>
+                                <div></div>
+                            </div>
                         </div>
                     </div>
                     <a href="{{ route('admin.category.index') }}">
@@ -31,12 +36,18 @@
                     </a>
                 </div>
             </div>
+            
             <div class="col-lg-3 col-md-6">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
                         <div class="row">
-                            <div class="huge" style="font-size: 20px;text-align: center;"> {{count($product)}} SẢN PHẨM</div>
-                            <div></div>
+                            <div class="col-xs-3">
+                                <i class="fa fa-cube fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" style="font-size: 20px;text-align: center;"> {{count($product)}} SẢN PHẨM</div>
+                                <div></div>
+                            </div>
                         </div>
                     </div>
                     <a href="{{ route('admin.product.index') }}">
@@ -49,12 +60,18 @@
                     </a>
                 </div>
             </div>
+
             <div class="col-lg-3 col-md-6">
                 <div class="panel panel-red">
                     <div class="panel-heading">
                         <div class="row">
-                            <div class="huge" style="font-size: 20px;text-align: center;"> {{count($brand)}} THƯƠNG HIỆU</div>
-                            <div></div>
+                            <div class="col-xs-3">
+                                <i class="fa fa-share-square-o fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" style="font-size: 20px;text-align: center;"> {{count($brand)}} THƯƠNG HIỆU</div>
+                                <div></div>
+                            </div>
                         </div>
                     </div>
                     <a href="{{ route('admin.brand.index') }}">
@@ -67,12 +84,18 @@
                     </a>
                 </div>
             </div>
+
             <div class="col-lg-3 col-md-6">
                 <div class="panel panel-green">
                     <div class="panel-heading">
                         <div class="row">
-                            <div class="huge" style="font-size: 20px;text-align: center;">{{count($blog)}} BÀI VIẾT</div>
-                            <div></div>
+                            <div class="col-xs-3">
+                                <i class="fa fa-edit fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" style="font-size: 20px;text-align: center;">{{count($blog)}} BÀI VIẾT</div>
+                                <div></div>
+                            </div>
                         </div>
                     </div>
                     <a href="{{ route('admin.blog.index') }}">
@@ -85,12 +108,18 @@
                     </a>
                 </div>
             </div>
+
             <div class="col-lg-3 col-md-6">
                 <div class="panel panel-green">
                     <div class="panel-heading" style="background-color: brown;">
                         <div class="row">
-                            <div class="huge" style="font-size: 20px;text-align: center;">{{count($slide)}} SLIDE</div>
-                            <div></div>
+                            <div class="col-xs-3">
+                                <i class="fa fa-camera fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" style="font-size: 20px;text-align: center;">{{count($slide)}} SLIDE</div>
+                                <div></div>
+                            </div>
                         </div>
                     </div>
                     <a href="{{ route('admin.slide.index') }}">
@@ -103,12 +132,18 @@
                     </a>
                 </div>
             </div>
+
             <div class="col-lg-3 col-md-6">
                 <div class="panel panel-green">
                     <div class="panel-heading" style="background-color: coral;">
                         <div class="row">
-                            <div class="huge" style="font-size: 20px;text-align: center;">{{count($order)}} ĐƠN HÀNG</div>
-                            <div></div>
+                            <div class="col-xs-3">
+                                <i class="fa fa-paste fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" style="font-size: 20px;text-align: center;">{{count($order)}} ĐƠN HÀNG</div>
+                                <div></div>
+                            </div>
                         </div>
                     </div>
                     <a href="{{ route('admin.checkout.index') }}">
@@ -121,42 +156,54 @@
                     </a>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-green">
-                    <div class="panel-heading" style="background-color: dimgrey;">
-                        <div class="row">
-                            <div class="huge" style="font-size: 20px;text-align: center;">{{count($staff)}} NHÂN VIÊN</div>
-                            <div></div>
-                        </div>
-                    </div>
-                    <a href="{{ route('admin.checkout.index') }}">
-                        <div class="panel-footer">
-                            <span class="pull-left">Truy cập</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
             <div class="col-lg-3 col-md-6">
                 <div class="panel panel-green">
                     <div class="panel-heading" style="background-color: darkorange;">
                         <div class="row">
-                            <div class="huge" style="font-size: 20px;text-align: center;">{{count($customer)}} TK KHÁCH HÀNG</div>
-                            <div></div>
+                            <div class="col-xs-3">
+                                <i class="fa fa-group fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" style="font-size: 20px;text-align: center;">{{count($customer)}} TK KHÁCH HÀNG</div>
+                                <div></div>
+                            </div>
                         </div>
                     </div>
                     <a href="{{ route('admin.checkout.index') }}">
                         <div class="panel-footer">
                             <span class="pull-left">Truy cập</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-
                             <div class="clearfix"></div>
                         </div>
                     </a>
                 </div>
             </div>
+
+            @if (Auth::user()->role == 1)
+            <div class="col-lg-3 col-md-6">
+                <div class="panel panel-green">
+                    <div class="panel-heading" style="background-color: mediumblue;">
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <i class="fa fa-group fa-5x"></i>
+                            </div>
+                            <div class="col-xs-9 text-right">
+                                <div class="huge" style="font-size: 25px">NHÂN VIÊN {{count($staff)}} </div>
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{{ route('admin.checkout.index') }}">
+                        <div class="panel-footer">
+                            <span class="pull-left">Truy cập</span>
+                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 </div>

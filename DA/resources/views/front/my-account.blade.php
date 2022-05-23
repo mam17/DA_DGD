@@ -1,5 +1,9 @@
 @extends('front.layouts.layout')
 
+@section('head')
+<title>Quản lý tài khoản</title>
+@endsection
+
 @section('content')
 
 <!-- Start All Title Box -->

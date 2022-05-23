@@ -15,51 +15,27 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
+                <p>
+                    <a class="btn btn-primary" href="{{ route('admin.statistic.index') }}"> <i class="fa fa-plus"></i>
+                        Chart 1</a>
+                <p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Thống kê
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Thống kê tổng số lượng sản phẩm theo tháng</b>
                     </div>
-                    <!-- /.panel-heading -->
                     <div class="panel-body">
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <i class="fa fa-bar-chart-o fa-fw"></i> Thống kê tổng tiền hoá đơn xuất theo
-                                        tháng</b>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="chartWrapper">
-                                            <div class="chartAreaWrapper">
-                                                <canvas id="myChart"></canvas>
-                                                <script src="{{asset('dashboard/js/chart.js')}}"></script>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="panel panel-default">
-                                    <div class="panel-heading">
-                                        <i class="fa fa-bar-chart-o fa-fw"></i> Thống kê số lượng sản phẩm theo Loại sản
-                                        phẩm</b>
-                                    </div>
-                                    <div class="panel-body">
-                                        <div class="chartWrapper">
-                                            <div class="chartAreaWrapper">
-                                                <canvas id="myChart2"></canvas>
-                                                <script src="{{asset('dashboard/js/chart.js')}}"></script>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="chartWrapper">
+                            <div class="chartAreaWrapper">
+                                <canvas id="myChart"></canvas>
+                                <script src="{{asset('dashboard/js/chart.js')}}"></script>
                             </div>
                         </div>
                     </div>
-                    <!-- /.panel-body -->
                 </div>
-                <!-- /.panel -->
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -81,6 +57,7 @@ const myChart = new Chart(ctx, {
         ],
         datasets: [{
             label: 'Thống kê đặt hàng',
+
             data: data,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -122,39 +99,5 @@ const myChart = new Chart(ctx, {
     }
 });
 </script>
-
-<!-- <script>
-  const myChart = new Chart(
-    document.getElementById('myChart2'),
-    config
-  );
-</script>
-
-<script>
-    const labels = [
-        'January',
-        'February',
-        'March',
-        'April',
-        'May',
-        'June',
-    ];
-
-    const data = {
-        labels: labels,
-        datasets: [{
-            label: 'My First dataset',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45],
-        }]
-    };
-
-    const config = {
-        type: 'line',
-        data: data,
-        options: {}
-    };
-</script> -->
 
 @endsection

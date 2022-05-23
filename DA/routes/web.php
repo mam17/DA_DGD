@@ -90,7 +90,7 @@ Route::post('admin/login', [AuthController::class, 'postAdminLogin'])->name('adm
 //Protected Routes
 Route::prefix('admin')->middleware('admin.login')->group(function () {
 
-    Route::get('/', [AuthController::class, 'index'])->name('admin.index');
+    Route::get('/', [AuthController::class, 'index']);
     Route::get('/logout', [AuthController::class, 'adminLogout'])->name('admin.logout');
 
     Route::get('/staff_profile', [AuthController::class, 'adminProfile'])->name('admin.profile');
@@ -113,16 +113,6 @@ Route::prefix('admin')->middleware('admin.login')->group(function () {
         Route::get('delete/{id}', [StaffController::class, 'destroy'])->name('admin.staff.destroy');
 
         Route::get('/lay-lai-mat-khau/{id}', [StaffController::class, 'getChangePassword'])->name('admin.staff.getChangePassword');
-    });
-
-    Route::prefix('statistic')->group(function () {
-        Route::get('/', [StatisticController::class, 'index'])->name('admin.statistic.index');
-        
-        Route::get('chart', [StatisticController::class, 'loadChart'])->name('admin.statistic.loadChart');
-
-        Route::get('chart-2', [StatisticController::class, 'loadChart2'])->name('admin.statistic.loadChart2');
-
-        Route::get('chart-3', [StatisticController::class, 'loadChart3'])->name('admin.statistic.loadChart3');
     });
 
     Route::prefix('category')->group(function () {
@@ -225,4 +215,20 @@ Route::prefix('admin')->middleware('admin.login')->group(function () {
     });
 
     
+    Route::prefix('statistic')->group(function () {
+        Route::get('/', [StatisticController::class, 'index'])->name('admin.statistic.index');
+        
+        Route::get('chart', [StatisticController::class, 'loadChart'])->name('admin.statistic.loadChart');
+
+        Route::get('chart-2', [StatisticController::class, 'loadChart2'])->name('admin.statistic.loadChart2');
+
+        Route::get('chart-3', [StatisticController::class, 'loadChart3'])->name('admin.statistic.loadChart3');
+    
+    });    
 });
+
+
+ // Reset password
+ Route::get('/verification-emai-customer',[CustomerController::class, 'getVerifyEmail'])->name('clients.verifyEmail');
+ Route::post('/verification-emai-customer',[CustomerController::class, 'verifyEmailCustomer']);
+ Route::post('/register-customer',[CustomerController::class, 'postRegister'])->name('clients.postUserRegister');

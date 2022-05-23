@@ -46,19 +46,18 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="login-box">
                         <ul>
-                            {{-- @if (Auth::check()) --}}
+                        @if (Auth::check())
                             <ul class="navbar-nav ml-auto ml-md-0">
                                 <li class="nav-item dropdown" style="background: #ffb307;">
                                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                        style="color: black"><i class="fas fa-user fa-fw"></i></a>
+                                        style="color: black"><i class="fas fa-user fa-fw"></i>{{ Auth::user()->customer->name }}</a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                        @if (Auth::check())
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="{{route('index.logout')}}">Đăng xuất</a>
                                         @else
                                         <a class="dropdown-item" href="{{route('index.login')}}">Đăng nhập</a>
-                                        <a class="dropdown-item" href="{{route('index.register')}}">Đăng ký</a>
+                                        <a class="dropdown-item" href="{{route('clients.verifyEmail')}}">Đăng ký</a>
                                         @endif
                                     </div>
                                 </li>
@@ -125,7 +124,7 @@
 
                 <div class="collapse navbar-collapse" id="navbar-menu">
                     <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li class="nav-item active"><a class="nav-link" href="{{route('index')}}">Trang chủ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{route('index')}}">Trang chủ</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{route('index.getAbout')}}">Giới thiệu</a></li>
                         <li class="nav-item"><a href="{{route('index.getProduct')}}" class="nav-link">Sản phẩm</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{route('index.getAccount')}}">Tài khoản</a></li>

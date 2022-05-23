@@ -1,5 +1,9 @@
 @extends('front.layouts.layout')
 
+@section('head')
+<title>Thanh toán</title>
+@endsection
+
 @section('content')
 
 <!-- Start All Title Box -->

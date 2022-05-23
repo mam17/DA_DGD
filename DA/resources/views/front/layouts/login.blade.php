@@ -1,4 +1,4 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
@@ -24,11 +24,11 @@
 </head>
 
 <body>
-    @if (session('thongbao'))
+    @if (session('message'))
     <div class="alert alert-success">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                 aria-hidden="true">&times;</span></button>
-        {{ session('thongbao') }}
+        {{ session('message') }}
     </div>
     @endif
     <div class="container">
@@ -63,10 +63,10 @@
                 </div>
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links">
-                        Bạn chưa có tài khoản?<a href="{{route('index.register')}}">Đăng ký</a>
+                        Bạn chưa có tài khoản?<a href="{{route('clients.verifyEmail')}}">Đăng ký</a>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <a href="#">Quên mật khẩu?</a>
+                        <a href="">Quên mật khẩu?</a>
                     </div>
                 </div>
             </div>
@@ -74,4 +74,4 @@
     </div>
 </body>
 
-</html>
+</html> -->

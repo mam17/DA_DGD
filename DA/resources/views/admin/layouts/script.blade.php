@@ -23,7 +23,8 @@
      integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ=="
      crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js"></script>
+
 
 
  <script>
@@ -91,3 +92,65 @@ function ConfirmDelete() {
         return false;
 }
  </script>
+
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
+<script type="text/javascript">
+    $(".alert").fadeTo(4500, 800).slideUp(800, function() {
+        $(".alert").slideUp(800);
+    });
+</script>
+
+
+<script>
+
+
+const loadChart = () => {
+    let url = '/admin/statistic/chart'
+    console.log(url);
+    $.ajax({
+        type: 'GET',
+        url: url,
+        dataType: 'json',
+        success: function (response) {
+            showChart(response.times, response.values);
+        },
+    })
+}
+loadChart()
+
+const loadChart2 = () => {
+    let url = '/admin/statistic/chart-2'
+    console.log(url);
+    $.ajax({
+        type: 'GET',
+        url: url,
+        dataType: 'json',
+        success: function (response) {
+            showChart2(response.times, response.values);
+        },
+    })
+    
+}
+loadChart2()
+
+const loadChart3 = () => {
+    let url = '/admin/statistic/chart-3'
+    console.log(url);
+    $.ajax({
+        type: 'GET',
+        url: url,
+        dataType: 'json',
+        success: function (response) {
+            showChart3(response.times, response.values);
+        },
+    })
+    
+}
+loadChart3()
+</script>

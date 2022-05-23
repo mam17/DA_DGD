@@ -15,11 +15,25 @@
                     href="{{route('index.login')}}" style="color: black; font-family: revert;"> Đăng nhập
                 </a></button>
         </div>
+
         <div class="col-md-9 register-right">
+            @if (session('message'))
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{ session('message') }}
+            </div>
+            @elseif (session('error'))
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                {{ session('error') }}
+            </div>
+            @endif
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <h3 class="register-heading">Đăng ký</h3>
-                    <form action="{{ route('index.postUserRegister') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('clients.postUserRegister') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row register-form">
                             <div class="col-md-6">
@@ -28,7 +42,8 @@
                                         value="" />
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Địa chỉ" name="address" value="" />
+                                    <input type="text" class="form-control" placeholder="Địa chỉ" name="address"
+                                        value="" />
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control" placeholder="Mật khẩu" name="password"
@@ -55,6 +70,10 @@
                                 <div class="form-group">
                                     <input type="email" class="form-control" placeholder="Email" name="email"
                                         value="" />
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Nhập mã xác thực"
+                                        name="customer_verification_code_register" value="" />
                                 </div>
                                 <div class="form-group">
                                     <input type="text" minlength="10" maxlength="10" name="phone" class="form-control"

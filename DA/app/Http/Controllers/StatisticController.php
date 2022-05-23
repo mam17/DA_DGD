@@ -27,14 +27,15 @@ class StatisticController extends Controller
     }
 
     public function loadChart() {
-        
         $respone = ['success' => true,'data' => ''];
         $order = Order::orderBy('created_at', 'desc')->take(20)->get();
         foreach ($order as $item) {
             $respone['times'][] = date('d-m-Y', strtotime($item->updated_at));
             $respone['values'][] = $item->total_money;
         }
-        return view('admin.statistic.index', compact( ['respone']));
+        // dd($respone);
+        return view('admin.statistic.chart1', compact( ['respone']));
+       
     }
 
     public function loadChart2() {

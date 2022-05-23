@@ -1,5 +1,7 @@
 @extends('front.layouts.layout')
-
+@section('head')
+<title>Giới thiệu</title>
+@endsection
 @section('content')
 <!-- Start All Title Box -->
 <div class="all-title-box">

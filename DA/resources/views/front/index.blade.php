@@ -35,6 +35,30 @@
 </div>
 <!-- End Slider -->
 
+    <!-- Start Categories  -->
+    <div class="categories-shop">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" style="height: 200px;" src="/front/assets/images/hehe.jpg" alt="" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" style="height: 200px;" src="/front/assets/images/lthe.png" alt="" />
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                    <div class="shop-cat-box">
+                        <img class="img-fluid" style="height: 200px;" src="/front/assets/images/tv.png" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Categories -->
+
 <!-- Start Products  -->
 <div class="products-box">
     <div class="container">

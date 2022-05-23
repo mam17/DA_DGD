@@ -1,5 +1,9 @@
 @extends('front.layouts.layout')
 
+@section('head')
+<title>Thông báo</title>
+@endsection
+
 @section('content')
 <div class="jumbotron jumbotron-fluid mt-5 mb-5">
     <div class="container">
