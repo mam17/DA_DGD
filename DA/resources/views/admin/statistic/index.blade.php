@@ -6,7 +6,6 @@
 
 @section('content')
 
-
 <div id="page-wrapper">
     <div class="container-fluid">
         <div class="row">
@@ -14,34 +13,42 @@
                 <h1 class="page-header">Thống kê</h1>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <i class="fa fa-bar-chart-o fa-fw"></i> Thống kê tổng đơn đặt hàng theo
-                        tháng</b>
+
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading" style="background-color: darkorange;">
+                            <div class="row">
+                                <div class="huge" style="font-size: 20px;text-align: center;">Doanh thu
+                                    {{number_format($profit)}} VNĐ </div>
+                                <div></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        <div class="chartWrapper">
-                            <div class="chartAreaWrapper">
-                                <canvas id="myChart"></canvas>
-                                <script src="{{asset('dashboard/js/chart.js')}}"></script>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading" style="background-color: yellowgreen;">
+                            <div class="row">
+                                <div class="huge" style="font-size: 20px;text-align: center;">Số lượng hàng đã bán:
+                                    {{number_format($sold)}} </div>
+                                <div></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="row">
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-bar-chart-o fa-fw"></i> Thống kê tổng tiền hoá đơn xuất theo ngày</b>
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Thống kê tổng tiền hoá đơn theo ngày</b>
                         </div>
                         <div class="panel-body">
                             <div class="chartWrapper">
                                 <div class="chartAreaWrapper">
-                                    <canvas id="myChart3"></canvas>
+                                    <canvas id="myChart"></canvas>
                                     <script src="{{asset('dashboard/js/chart.js')}}"></script>
                                 </div>
                             </div>
@@ -63,6 +70,39 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Thống kê số lượng đơn hàng theo tháng</b>
+                        </div>
+                        <div class="panel-body">
+                            <div class="chartWrapper">
+                                <div class="chartAreaWrapper">
+                                    <canvas id="myChart4"></canvas>
+                                    <script src="{{asset('dashboard/js/chart.js')}}"></script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Thống kê số lượng sản phẩm theo thương hiệu sản
+                            phẩm</b>
+                        </div>
+                        <div class="panel-body">
+                            <div class="chartWrapper">
+                                <div class="chartAreaWrapper">
+                                    <canvas id="myChart3"></canvas>
+                                    <script src="{{asset('dashboard/js/chart.js')}}"></script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -73,7 +113,7 @@
 @section('static')
 
 <script>
-const ctx = document.getElementById('myChart').getContext('2d');
+const ctx = document.getElementById('myChart4').getContext('2d');
 var data = <?= json_encode($data); ?>;
 const myChart = new Chart(ctx, {
     type: 'bar',

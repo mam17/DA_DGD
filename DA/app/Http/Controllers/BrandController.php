@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -22,32 +23,50 @@ class BrandController extends Controller
     
     public function store(Request $request)
     {
-        $this->validate(
-            $request,
-            [
-                'name_bra' => 'required|unique:brands,name_bra',
-            ],
-            [
-                'name_bra.required' => "Không được để trống",
-                'name_bra.unique' => "Trùng tên thương hiệu"
-            ]
-        );
-        
-        $slug = Str::slug($request->name_bra);
+        $brand = new Brand();
+        $data = $request->except('_token');
+        $messages = [
+            'name_bra.required' => "Không được để trống tên",
+            'name_bra.unique' => "Trùng tên thương hiệu",
+            'image.required' => "Chưa chọn ảnh",
+        ];
 
-        $checkSlug = Brand::where('slug', $slug)->first();
-        while ($checkSlug) {
-            $slug = $checkSlug->slug . "_" . Str::random(length: 2);
+        $validator = Validator::make($data, [
+            'name_bra' => 'required|unique:brands,name_bra',
+            'image' => 'required',
+        ], $messages);
+
+        if ($validator->fails()) {
+            $errors = $validator->errors();
+            return redirect()->back()->with('errors', $errors);
+        } else {
+            $brand->name_bra = $request->name_bra;
+            $brand->slug = Str::slug($request->name_bra);
+
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $name_file = $file->getClientOriginalName();
+                $ext = $file->getClientOriginalExtension();
+
+                if (
+                    strcasecmp($ext, 'jpg') === 0
+                    || strcasecmp($ext, 'png') === 0
+                    || strcasecmp($ext, 'jepg') === 0
+                ) {
+                    $image = Str::random(5) . '_' . $name_file;
+                    while (file_exists('uploads/images/brand/' . $image)) {
+                        $image = Str::random(5) . '_' . $name_file;
+                    }
+                }
+                $file->move('uploads/images/brand', $image);
+                $brand->image = $image;
+            }
+
+            $brand->save();
+            return redirect()->route('admin.brand.index')->with('success', 'Thêm mới thành công');
         }
-
-        Brand::create([
-            'name_bra' => $request->name_bra,
-            'slug' => $slug
-        ]);
-
-        return redirect()->route('admin.brand.index')->with('success', 'Thêm mới thành công');
     }
-
+   
     public function edit($id)
     {
         $brand = Brand::find($id);
@@ -61,6 +80,26 @@ class BrandController extends Controller
     {
         $brand = Brand::find($id);
         $brand->name_bra = $request->name_bra;
+        $brand->slug = Str::slug($request->name_bra);
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $name_file = $file->getClientOriginalName();
+            $ext = $file->getClientOriginalExtension();
+
+            if (
+                strcasecmp($ext, 'jpg') === 0
+                || strcasecmp($ext, 'png') === 0
+                || strcasecmp($ext, 'jepg') === 0
+            ) {
+                $image = Str::random(5) . '_' . $name_file;
+                while (file_exists('uploads/images/brand/' . $image)) {
+                    $image = Str::random(5) . '_' . $name_file;
+                }
+            }
+            $file->move('uploads/images/brand', $image);
+            $brand->image = $image;
+        }
 
         $brand->save();
         return redirect()->route('admin.brand.index')->with('success', 'Sửa thành công');

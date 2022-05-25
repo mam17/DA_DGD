@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Order_Detail;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use PDF;
@@ -45,19 +46,29 @@ class CheckOutController extends Controller
   }
 
   public function cancelOrder($id) 
-  {
-    //   $product = DB::table('products')->where('id', $id)->first();
-    //   $product->quantity = +1;
-    //   $product->update();
-      
+  { 
       $order = Order::find($id);
       if($order->status == 0 && $order->customer_id == Auth::user()->customer->id ) {
           $order->status = -1;
           $order->update();
+
+          foreach ($order->order_detail as $item) {
+            $product = Product::find($item->product_id);
+            $product->quantity += $item->quanty;
+            $product->sold -= $item->quanty;
+            $product->update();
+        }
+
           return redirect()->back()->with('success', 'Đơn hàng DH'.$order->id.' đã được huỷ!');
       } else if($order->status == -2) {
           $order->status = -1;
           $order->update();
+          foreach ($order->order_detail as $item) {
+            $product = Product::find($item->product_id);
+            $product->quantity += $item->quanty;
+            $product->sold -= $item->quanty;
+            $product->update();
+        }
           return redirect()->back()->with('success', 'Đơn hàng DH'.$order->id.' đã được huỷ!');
       }
 

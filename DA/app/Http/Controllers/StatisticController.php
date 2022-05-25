@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
@@ -23,24 +24,29 @@ class StatisticController extends Controller
             --$months;
             $data[$months] = $orders[$index];
         }
-        return view('admin.statistic.index', compact( ['data']));
+        
+        $profit = DB::table('orders')->where('status','=',3)->sum('total_money');
+        $sold = DB::table('products')->sum('sold');
+        return view('admin.statistic.index', compact('profit','sold',['data']));
     }
-
+    
     public function loadChart() {
+        
         $respone = ['success' => true,'data' => ''];
         $order = Order::orderBy('created_at', 'desc')->take(20)->get();
         foreach ($order as $item) {
             $respone['times'][] = date('d-m-Y', strtotime($item->updated_at));
             $respone['values'][] = $item->total_money;
+          
         }
-        // dd($respone);
-        return view('admin.statistic.chart1', compact( ['respone']));
-       
+        return response()->json($respone, 200);
     }
 
     public function loadChart2() {
         $respone = ['success' => true,'data' => ''];
-        $sp = Product::select('category_id', DB::raw('count(*) as total'))->groupBy('category_id')->pluck('total','category_id')->all();
+        $sp = Product::select('category_id', DB::raw('count(*) as total'))
+            ->groupBy('category_id')
+            ->pluck('total','category_id')->all();
 
         foreach($sp as $key => $value) {
             $respone['times'][] = Category::find($key)->name_cate;
@@ -48,5 +54,18 @@ class StatisticController extends Controller
         }
         return response()->json($respone, 200);
     }
-    
+
+    public function loadChart3() {
+
+        $respone = ['success' => true,'data' => ''];
+        $sp = Product::select('brand_id', DB::raw('count(*) as total'))
+            ->groupBy('brand_id')
+            ->pluck('total','brand_id')->all();
+
+        foreach($sp as $key => $value) {
+            $respone['times'][] = Brand::find($key)->name_bra;
+            $respone['values'][] = $value;
+        }
+        return response()->json($respone, 200);
+    }
 }

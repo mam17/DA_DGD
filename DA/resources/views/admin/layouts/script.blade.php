@@ -93,6 +93,7 @@ function ConfirmDelete() {
 }
  </script>
 
+
 <script>
     $.ajaxSetup({
         headers: {
@@ -108,7 +109,6 @@ function ConfirmDelete() {
 
 
 <script>
-
 
 const loadChart = () => {
     let url = '/admin/statistic/chart'
@@ -146,11 +146,11 @@ const loadChart3 = () => {
         type: 'GET',
         url: url,
         dataType: 'json',
-        success: function (response) {
-            showChart3(response.times, response.values);
+        success: function (data) {
+            showChart3(data.times, data.values);
         },
     })
-    
 }
 loadChart3()
 </script>
+

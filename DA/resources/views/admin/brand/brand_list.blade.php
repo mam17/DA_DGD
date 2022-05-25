@@ -26,6 +26,7 @@
                         <tr>
                             <th>ID</th>
                             <th>Tên thương hiệu</th>
+                            <th>Hình ảnh</th>
                             <th>Xóa</th>
                             <th>Sửa</th>
                         </tr>
@@ -36,6 +37,7 @@
                         <tr class="odd gradeX">
                             <td>{{ $i++ }}</td>
                             <td>{{$brand->name_bra}}</td>
+                            <td><img src="{{asset('uploads/images/brand/'.$brand->image)}}" alt="" srcset="" width="120px" height="120px"></td>
                             <td class="center">
                                 <a class="btn btn-danger btn-xs" href="{{route('admin.brand.destroy', $brand->id)}}" onclick="return ConfirmDelete()"><i class="fa fa-trash-o  fa-fw"></i> Xóa</a>
                             </td>
@@ -65,11 +67,17 @@
                             <div class="container-fluid">
                                 <div class="row">
                                     <div class="col-lg-12" style="padding-bottom:120px">
-                                        <form action="{{ route('admin.brand.store') }}" method="POST">
+                                        <form action="{{ route('admin.brand.store') }}" method="POST" enctype="multipart/form-data">
                                             @csrf
                                             <div class="form-group">
                                                 <label>Tên danh mục</label>
                                                 <input class="form-control" name="name_bra" placeholder="Nhập tên danh mục" />
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Hình ảnh</label>
+                                                    <input type="file" class="form-control" id="exampleInputEmail1" name="image" accept="image/*" placeholder="Thêm ảnh">
+                                                </div>
                                             </div>
                                             <button style="background-color: gray;  color: white; " type="submit" class="btn btn-default">Thêm danh mục</button>
                                             <form>

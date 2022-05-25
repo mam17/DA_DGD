@@ -15,3 +15,5 @@
 
 <!-- DataTables Responsive CSS -->
 <link href="/dashboard/bower_components/datatables-responsive/css/dataTables.responsive.css" rel="stylesheet">
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">

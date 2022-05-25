@@ -48,7 +48,7 @@
                 labels:labels,
                 datasets: [
                     {
-                        label: 'Hoá đơn nhập',
+                        label: 'Sản phẩm',
                         borderColor: 'rgb(255, 99, 132)',
                         data: data 
                     },

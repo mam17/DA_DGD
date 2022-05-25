@@ -23,6 +23,7 @@ class PageController extends Controller
         $pro = Product::all();
         $blog = Blog::all();
         $slide = Slide::all();
+        $brand = Brand::all();
         $sale = Product::where('discount', '>', 0)->paginate(4);
         $status = Product::where('status', 1)->get();
         $viewData = [
@@ -31,7 +32,8 @@ class PageController extends Controller
             'slide' => $slide,
             'sale' => $sale,
             'status' => $status,
-            'pro' => $pro
+            'pro' => $pro,
+            'brand'=> $brand
         ];
         return view('front.index', $viewData);
     }
@@ -87,9 +89,11 @@ class PageController extends Controller
     {
         $product = Product::find($product_id);
         $pro = Product::all();
+        $brand = Brand::all();
         $viewData = [
             'product' => $product,
-            'pro' => $pro
+            'pro' => $pro,
+            'brand'=> $brand
         ];
         return view('front.pro-detail', $viewData);
     }
@@ -103,8 +107,10 @@ class PageController extends Controller
     {
         $slide = Slide::all();
         $pro = Product::all();
+        $brand = Brand::all();
         $viewData = [
             'slide' => $slide,
+            'brand'=> $brand,
             'pro' => $pro
         ];
         return view('front.contact-us', $viewData);
@@ -114,11 +120,13 @@ class PageController extends Controller
     {
         $order = Order::where('customer_id', '=', Auth::user()->customer->id)->orderBy('id', 'desc')->get();
         $slide = Slide::all();
+        $brand = Brand::all();
         $pro = Product::all();
         $viewData = [
             'slide' => $slide,
             'order' => $order,
-            'pro' => $pro
+            'pro' => $pro,
+            'brand' => $brand
         ];
         return view('front.my-account', $viewData);
     }
@@ -126,9 +134,11 @@ class PageController extends Controller
     {
         $product = Product::orderBy('id', 'desc')->get();
         $pro = Product::all();
+        $brand = Brand::all();
         $viewData = [
             'product' => $product,
-            'pro' => $pro
+            'pro' => $pro,
+            'brand'=>$brand
         ];
         return view('front.layouts.layout', $viewData);
     }
@@ -138,10 +148,12 @@ class PageController extends Controller
         $pro = Product::all();
         $blog = Blog::all();
         $slide = Slide::all();
+        $brand = Brand::all();
         $viewData = [
             'blog' => $blog,
             'slide' => $slide,
-            'pro' => $pro
+            'pro' => $pro,
+            'brand'=> $brand
         ];
         return view('front.about', $viewData);
     }
@@ -152,11 +164,13 @@ class PageController extends Controller
         $blog = Blog::all();
         $blo = Blog::find($blog_id);
         $slide = Slide::all();
+        $brand = Brand::all();
         $viewData = [
             'blog' => $blog,
             'slide' => $slide,
             'blo' => $blo,
-            'pro' => $pro
+            'pro' => $pro,
+            'brand'=> $brand
         ];
         return view('front.blog', $viewData);
     }
@@ -184,6 +198,7 @@ class PageController extends Controller
         $sale = Product::where('discount', '>', 0)->limit(4)->get();
         $status = Product::where('status', 1)->limit(4)->get();
         $pro = Product::all();
+        $brand = Brand::all();
         $blog = Blog::all();
         $viewData = [
             'product' => $product,
@@ -192,13 +207,13 @@ class PageController extends Controller
             'status' => $status,
             'pro' => $pro,
             'blog' => $blog,
+            'brand'=> $brand
         ];
         return view('front.search', $viewData);
     }
 
     public function postCheckout(Request $request)
     {
-       
         $cart = Session::get('Cart');
         
         $order = new Order;
@@ -231,7 +246,8 @@ class PageController extends Controller
     {
       $pro = Product::all();
       $infor = Customer::all();
-      return view('front.checkout', compact('infor', 'pro'));
+      $brand = Brand::all();
+      return view('front.checkout', compact('infor', 'pro','brand'));
     }
 
     public function getSuccess()
@@ -239,10 +255,12 @@ class PageController extends Controller
         $pro = Product::all();
         $blog = Blog::all();
         $slide = Slide::all();
+        $brand = Brand::all();
         $viewData = [
             'blog' => $blog,
             'slide' => $slide,
-            'pro' => $pro
+            'pro' => $pro,
+            'brand'=> $brand
         ];
         return view('front.notify', $viewData);
     }
