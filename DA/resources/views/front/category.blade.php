@@ -23,17 +23,13 @@
             <div class="row">
                 @if (count($cate->product) > 0)
                 @foreach ($cate->product as $item)
+                @if($item->quantity > 0)
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                     <div class="products-single fix">
                         <div class="box-img-hover">
                             @if($item->discount !=0)
                             <div class="type-lb">
                                 <p class="sale">Sale</p>
-                            </div>
-                            @endif
-                            @if($item->quantity == 0)
-                            <div class="type-lb">
-                                <p class="new">Hết hàng</p>
                             </div>
                             @endif
                             <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
@@ -66,6 +62,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 @endforeach
                 @else
                 Không có sản phẩm nào
@@ -76,20 +73,16 @@
         <div role="tabpanel" class="tab-pane fade" id="list-view">
             <div class="list-view-box">
                 <div class="row">
-                    <?php $i = 1; ?>
+
                     @if (count($cate->product) > 0)
                     @foreach ($cate->product as $item)
-                    @if ($i < 7) <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                    @if($item->quantity > 0)
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                         <div class="products-single fix">
                             <div class="box-img-hover">
                                 @if($item->discount !=0)
                                 <div class="type-lb">
                                     <p class="sale">Sale</p>
-                                </div>
-                                @endif
-                                @if($item->quantity == 0)
-                                <div class="type-lb">
-                                    <p class="new">Hết hàng</p>
                                 </div>
                                 @endif
                                 <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 195px;"
@@ -106,37 +99,36 @@
                                 </div>
                             </div>
                         </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                    <div class="why-text full-width">
-                        <h4>{{$item->name_pr}}</h4>
-                        <h4 style="color: red;">{{$item->brand->name_bra}}</h4>
-                        @if($item->discount != 0)
-                        <div class="row">
-                            <h4 style="text-align: center;"><del
-                                    style="color: chocolate;">{{number_format($item->price)}}
-                                    VNĐ</h5>
-                                    <h5 style="text-align: center;">
-                                </del>{{number_format($item->discount)}} VNĐ</h5>
-                        </div>
-                        @else
-                        <h5 style="text-align: center;">{{number_format($item->price)}} VNĐ</h5>
-                        @endif
-                        <div style="display: flex;  flex-wrap: wrap;">{{$item->description}} </div>
-                        <a class="btn hvr-hover" href="#" onclick="addCart({{ $item->id }})"
-                            data-id="{{route('cart.addCart',[$item->id] )}}">Thêm vào giỏ hàng</a>
                     </div>
+                    <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
+                        <div class="why-text full-width">
+                            <h4>{{$item->name_pr}}</h4>
+                            <h4 style="color: red;">{{$item->brand->name_bra}}</h4>
+                            @if($item->discount != 0)
+                            <div class="row">
+                                <h4 style="text-align: center;"><del
+                                        style="color: chocolate;">{{number_format($item->price)}}
+                                        VNĐ</h5>
+                                        <h5 style="text-align: center;">
+                                    </del>{{number_format($item->discount)}} VNĐ</h5>
+                            </div>
+                            @else
+                            <h5 style="text-align: center;">{{number_format($item->price)}} VNĐ</h5>
+                            @endif
+                            <div style="display: flex;  flex-wrap: wrap;">{{$item->description}} </div>
+                            <a class="btn hvr-hover" href="#" onclick="addCart({{ $item->id }})"
+                                data-id="{{route('cart.addCart',[$item->id] )}}">Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
+                    @endif
+                    @endforeach
+                    @else
+                    Không có sản phẩm
+                    @endif
                 </div>
-                @endif
-                <?php $i++; ?>
-                @endforeach
-                @else
-                Không có sản phẩm
-                @endif
             </div>
         </div>
     </div>
-</div>
 </div>
 @section('feed')
 

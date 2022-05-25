@@ -23,17 +23,13 @@
             <div class="row">
                 @if (count($bra->product) > 0)
                 @foreach ($bra->product as $item)
+                @if($item->quantity > 0)
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                     <div class="products-single fix">
                         <div class="box-img-hover">
                             @if($item->discount !=0)
                             <div class="type-lb">
                                 <p class="sale">Sale</p>
-                            </div>
-                            @endif
-                            @if($item->quantity == 0)
-                            <div class="type-lb">
-                                <p class="new">Hết hàng</p>
                             </div>
                             @endif
                             <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
@@ -65,6 +61,7 @@
                         </div>
                     </div>
                 </div>
+                @endif
                 @endforeach
                 @else
                 Không có sản phẩm nào
@@ -75,20 +72,16 @@
         <div role="tabpanel" class="tab-pane fade" id="list-view">
             <div class="list-view-box">
                 <div class="row">
-                    <?php $i = 1; ?>
+                    
                     @if (count($bra->product) > 0)
                     @foreach ($bra->product as $item)
-                    @if ($i < 7) <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
+                    @if($item->quantity > 0) 
+                    <div class="col-sm-6 col-md-6 col-lg-4 col-xl-4">
                         <div class="products-single fix">
                             <div class="box-img-hover">
                                 @if($item->discount !=0)
                                 <div class="type-lb">
                                     <p class="sale">Sale</p>
-                                </div>
-                                @endif
-                                @if($item->quantity == 0)
-                                <div class="type-lb">
-                                    <p class="new">Hết hàng</p>
                                 </div>
                                 @endif
                                 <img src="{{asset('uploads/images/product/'.$item->image)}}" style="height: 200px;"
@@ -125,7 +118,7 @@
                     </div>
                 </div>
                 @endif
-                <?php $i++; ?>
+                
                 @endforeach
                 @else
                 Không có sản phẩm
