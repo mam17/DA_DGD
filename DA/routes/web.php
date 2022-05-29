@@ -75,13 +75,6 @@ Route::post('/login', [AuthController::class, 'postUserLogin'])->name('index.pos
 Route::get('/register', [PageController::class, 'getRegister'])->name('index.register');
 Route::post('/register', [AuthController::class, 'postUserRegister'])->name('index.postUserRegister');
 
-
-
-Route::post('/otp',[OtpController::class,'postOtp'])->name('postotp');
-Route::get('/otp', [OtpController::class,'getOtp'])->name('getotp');   
-Route::get('/resend_otp', [OtpController::class,'resend'])->name('resend');  
-
-
 // admin
 //Public Routes
 Route::get('admin/login', [AuthController::class, 'adminLogin'])->name('admin.login');

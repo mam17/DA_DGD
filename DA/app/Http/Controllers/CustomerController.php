@@ -35,10 +35,10 @@ class CustomerController extends Controller
         }
         else{
             $verification_code= strtoupper(Str::random(10));
-            $to_name="Long Tơ";
+            $to_name="Đồ gia dụng";
             $to_mail=$data['email'];
-            $title_mail = "Mã Xác Thực Từ Long Tơ";
-            $data=array("name"=>"Long Tơ","body"=>$verification_code);
+            $title_mail = "Mã Xác Thực Từ Đồ gia dụng";
+            $data=array("name"=>"Đồ gia dụng","body"=>$verification_code);
             $verification[] = array(
                 'verification_time' => $now + 300,
                 'verification_code' => $verification_code,
@@ -49,12 +49,13 @@ class CustomerController extends Controller
                 $message->to($to_mail)->subject($title_mail );//send this mail with subject
                 $message->from($to_mail, $to_name,$title_mail );//send from this mail
             });
-            return back()->with('message','Chúng tôi đã gửi mã xác minh vào email của bạn, hãy nhập mã xác minh để đăng ký tài khoản!');
+            return redirect()->route('index.register')->with('message','Chúng tôi đã gửi mã xác minh vào email của bạn, hãy nhập mã xác minh để đăng ký tài khoản!');
         }
     }
 
     public function postRegister(Request $request)
     {
+      
         $data=$request->all();
         $now=time();
         $verification=Session::get('email');

@@ -25,6 +25,7 @@
 <div class="shop-detail-box-main">
     <div class="container">
         @if (isset($product))
+        
         <div class="row">
             <div class="col-xl-5 col-lg-5 col-md-6">
                 <div id="carousel-example-1" class="single-product-slider carousel slide" data-ride="carousel">
@@ -69,8 +70,9 @@
                 </div>
             </div>
         </div>
+       
         @endif
-        <!-- bình luận -->
+
         <div class="row my-5">
             <div class="col-lg-12">
                 <div class="title-all text-center">
@@ -79,9 +81,8 @@
                 </div>
 
                 <div class="featured-products-box owl-carousel owl-theme">
-
                     @foreach ($product->category->product as $item)
-                    @if ($item->id != $product->id)
+                    @if ($item->id != $product->id && $item->quantity>0)
                     <div class="item">
                         <div class="products-single fix">
                             <div class="box-img-hover">
@@ -89,11 +90,12 @@
                                     class="img-fluid" alt="Image">
                                 <div class="mask-icon">
                                     <ul>
-                                        <li><a href="{{ route('index.getProductDetail', ['product_slug' => $item->slug, 'product_id' => $item->id])  }}"
+                                        <li><a href="{{ route('index.getProductDetail', ['product_slug' => $item->slug, 'product_id' => $item->id]) }}"
                                                 data-toggle="tooltip" data-placement="right" title="View"><i
                                                     class="fas fa-eye"></i></a></li>
                                     </ul>
-                                    <a class="cart add-cart">Thêm vào giỏ
+                                    <a class="cart add-cart" href="#" onclick="addCart({{ $item->id }})"
+                                        data-id="{{route('cart.addCart',[$item->id] )}}">Thêm vào giỏ
                                         hàng</a>
                                 </div>
                             </div>

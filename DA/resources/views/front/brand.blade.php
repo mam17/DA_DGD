@@ -72,7 +72,6 @@
         <div role="tabpanel" class="tab-pane fade" id="list-view">
             <div class="list-view-box">
                 <div class="row">
-                    
                     @if (count($bra->product) > 0)
                     @foreach ($bra->product as $item)
                     @if($item->quantity > 0) 
@@ -98,31 +97,30 @@
                                 </div>
                             </div>
                         </div>
-                </div>
-                <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
-                    <div class="why-text full-width">
-                        <h4>{{$item->name_pr}}</h4>
-                        @if($item->discount != 0)
-                        <div class="row">
-                            <h4 style="text-align: center;"><del
-                                    style="color: chocolate;">{{number_format($item->price)}}
-                                    VNĐ</h5>
-                                    <h5 style="text-align: center;">
-                                </del>{{number_format($item->discount)}} VNĐ</h5>
-                        </div>
-                        @else
-                        <h5 style="text-align: center;">{{number_format($item->price)}} VNĐ</h5>
-                        @endif
-                        <p>{{$item->description}}</p>
-                        <a class="btn hvr-hover" href="#">Thêm vào giỏ hàng</a>
                     </div>
-                </div>
-                @endif
-                
-                @endforeach
-                @else
-                Không có sản phẩm
-                @endif
+                    <div class="col-sm-6 col-md-6 col-lg-8 col-xl-8">
+                        <div class="why-text full-width">
+                            <h4>{{$item->name_pr}}</h4>
+                            @if($item->discount != 0)
+                            <div class="row">
+                                <h4 style="text-align: center;"><del
+                                        style="color: chocolate;">{{number_format($item->price)}}
+                                        VNĐ</h5>
+                                        <h5 style="text-align: center;">
+                                    </del>{{number_format($item->discount)}} VNĐ</h5>
+                            </div>
+                            @else
+                            <h5 style="text-align: center;">{{number_format($item->price)}} VNĐ</h5>
+                            @endif
+                            <p>{{$item->description}}</p>
+                            <a class="btn hvr-hover" href="#">Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
+                    @endif
+                    @endforeach
+                    @else
+                    Không có sản phẩm
+                    @endif
             </div>
         </div>
     </div>

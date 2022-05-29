@@ -46,21 +46,21 @@
                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                     <div class="login-box">
                         <ul>
-                        @if (Auth::check())
                             <ul class="navbar-nav ml-auto ml-md-0">
+                                @if (Auth::check() && Auth::user()->role == 3)
                                 <li class="nav-item dropdown" style="background: #ffb307;">
                                     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                        style="color: black"><i class="fas fa-user fa-fw"></i>{{ Auth::user()->customer->name }}</a>
+                                        style="color: black"><i
+                                            class="fas fa-user fa-fw"></i>{{ Auth::user()->customer->name }}</a>
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                                        <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="{{route('index.logout')}}">Đăng xuất</a>
-                                        @else
-                                        <a class="dropdown-item" href="{{route('index.login')}}">Đăng nhập</a>
-                                        <a class="dropdown-item" href="{{route('clients.verifyEmail')}}">Đăng ký</a>
-                                        @endif
                                     </div>
                                 </li>
+                                @else
+                                <a class="dropdown-item" style="background-color: #ffb307"
+                                    href="{{route('index.login')}}">Đăng nhập</a>
+                                @endif
                             </ul>
                         </ul>
                     </div>

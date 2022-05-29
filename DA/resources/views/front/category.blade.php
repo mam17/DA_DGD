@@ -73,7 +73,6 @@
         <div role="tabpanel" class="tab-pane fade" id="list-view">
             <div class="list-view-box">
                 <div class="row">
-
                     @if (count($cate->product) > 0)
                     @foreach ($cate->product as $item)
                     @if($item->quantity > 0)

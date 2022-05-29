@@ -12,7 +12,9 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Order_Detail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class PageController extends Controller
 {
@@ -214,7 +216,9 @@ class PageController extends Controller
 
     public function postCheckout(Request $request)
     {
+        // dd($request);
         $cart = Session::get('Cart');
+        $order_detail = Order_Detail::all();
         
         $order = new Order;
         $order->customer_id = Auth::user()->customer->id;
@@ -224,7 +228,6 @@ class PageController extends Controller
         $order->save();
   
         foreach ($cart->products as $key => $value) {
-   
             $orderdetail = new Order_Detail;
             $orderdetail->order_id = $order->id;
             $orderdetail->product_id = $key;
@@ -237,6 +240,13 @@ class PageController extends Controller
             $product->sold += $value['quanty'];
             $product->save();
         }
+        $to_name="Đồ gia dụng";
+        $to_mail=$request['email'];
+        $title_mail = "Đồ gia dụng cảm ơn quý khách";
+        Mail::send('front.checkoutEmail', compact('order', 'order_detail'), function($message) use ($to_name,$to_mail,$title_mail ){
+        $message->to($to_mail)->subject($title_mail );
+        $message->from($to_mail, $to_name,$title_mail );
+        });
         $request->session()->forget('Cart');
         return redirect()->route('index.getSuccess');
         

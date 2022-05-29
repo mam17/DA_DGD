@@ -1,7 +1,4 @@
-<!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+
 <link rel="stylesheet" href="/front/assets/style_login.css">
 
 <!DOCTYPE html>
@@ -29,6 +26,13 @@
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                 aria-hidden="true">&times;</span></button>
         {{ session('message') }}
+    </div>
+    @endif
+    @if (session('thongbao'))
+    <div class="alert alert-success">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                aria-hidden="true">&times;</span></button>
+        {{ session('thongbao') }}
     </div>
     @endif
     <div class="container">
@@ -64,9 +68,6 @@
                 <div class="card-footer">
                     <div class="d-flex justify-content-center links">
                         Bạn chưa có tài khoản?<a href="{{route('clients.verifyEmail')}}">Đăng ký</a>
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <a href="">Quên mật khẩu?</a>
                     </div>
                 </div>
             </div>

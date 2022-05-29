@@ -107,7 +107,7 @@
                                 <div class="card-body">
                                     <table class="table">
                                         <thead class="bg-success">
-                                            <tr>
+                                            <tr style="background: #b0b435; color: #ffffff;">
                                                 <th scope="col">STT</th>
                                                 <th scope="col">Mã đơn</th>
                                                 <th scope="col">Ngày đặt</th>
