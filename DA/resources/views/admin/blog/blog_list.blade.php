@@ -55,8 +55,8 @@
                                         <tr class="odd gradeX">
                                             <td>{{ $i++ }}</td>
                                             <td>{{$blog->title}}</td>
-                                            <td>{{$blog->intro}}</td>
-                                            <td>{{$blog->content}}</td>
+                                            <td>{!!$blog->intro!!}</td>
+                                            <td>{!!$blog->content!!}</td>
                                             <td class="">
                                                 <img src="{{asset('uploads/images/blog/'.$blog->image)}}" alt="" srcset="" width="120px" height="120px">
                                             </td>

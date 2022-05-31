@@ -60,6 +60,7 @@
                                     <thead>
                                         <tr>
                                             <th>STT</th>
+                                            <th>Chức năng</th>
                                             <th>Tên</th>
                                             <th>Giá</th>
                                             <th>Danh mục</th>
@@ -71,7 +72,7 @@
                                             <th>Ảnh sản phẩm</th>
                                             <th>Quà</th>
                                             <th>Trạng thái</th>
-                                            <th>Chức năng</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody style=" text-align: center;">
@@ -79,6 +80,12 @@
                                         @foreach($products as $product)
                                         <tr>
                                             <td>{{ $i++ }}</td>
+                                            <td style="text-align:center;">
+                                                <span>
+                                                    <a href="{{route('admin.product.edit', $product->id)}}" class="btn btn-warning btn-xs "> <i class="fa fa-edit"></i> Cập nhật</a>
+                                                    <a href="{{route('admin.product.destroy', $product->id)}}"  onclick="return ConfirmDelete()" class="btn btn-danger btn-xs "><i class="fa fa-trash"></i> Xoá</a>
+                                                </span>
+                                            </td>
                                             <td>{{$product->name_pr}}</td>
                                             <td>{{$product->price}}</td>
                                             <td> @if ($product->category)
@@ -91,18 +98,13 @@
                                             <td>{{$product->quantity}}</td>
                                             <td>{{$product->sold}}</td>
                                             <td>{{$product->discount}}</td>
-                                            <td>{{$product->description}}</td>
+                                            <td>{!!$product->description!!}</td>
                                             <td class="">
                                                 <img src="{{asset('uploads/images/product/'.$product->image)}}" alt="" srcset="" width="120px" height="120px">
                                             </td>
                                             <td>{{$product->gift}}</td>
                                             <td>{{$product->status}}</td>
-                                            <td style="text-align:center;">
-                                                <span>
-                                                    <a href="{{route('admin.product.edit', $product->id)}}" class="btn btn-warning btn-xs "> <i class="fa fa-edit"></i> Cập nhật</a>
-                                                    <a href="{{route('admin.product.destroy', $product->id)}}"  onclick="return ConfirmDelete()" class="btn btn-danger btn-xs "><i class="fa fa-trash"></i> Xoá</a>
-                                                </span>
-                                            </td>
+                                            
                                         </tr>
                                         @endforeach
                                     </tbody>

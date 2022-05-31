@@ -10,11 +10,17 @@
  <!-- Custom Theme JavaScript -->
  <script src="/dashboard/dist/js/sb-admin-2.js"></script>
 
+ <!--check editer -->
+ <script type="text/javascript" src="/dashboard/ckeditor/ckeditor.js"></script>
+
+ <script type="text/javascript">
+    CKEDITOR.replace( 'editor1' );
+</script>
  <!-- DataTables JavaScript -->
  <script src="/dashboard/bower_components/DataTables/media/js/jquery.dataTables.min.js"></script>
  <script src="/dashboard/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js">
  </script>
- <script type="text/javascript" language="javascript" src="/dashboard/ckeditor/ckeditor.js"></script>
+
 
  <!-- Page-Level Demo Scripts - Tables - Use for reference -->
 

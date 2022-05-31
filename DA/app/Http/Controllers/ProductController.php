@@ -36,10 +36,13 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         $product = new Product();
+
         $data = $request->except('_token');
         $messages = [
             'name_pr.required' => "Nhập tên sản phẩm",
             'name_pr.unique' => "Trùng tên sản phẩm",
+            'category_id.required' => "Chưa chọn danh mục sản phẩm",
+            'brand_id.required' => "Chưa chọn thương hiệu sản phẩm",
             'quantity.required' => "Hãy nhập số lượng",
             'quantity.numeric' => 'Hãy nhập số!',
             'quantity.min' => 'Số lượng lớn hơn 1!',
@@ -50,26 +53,28 @@ class ProductController extends Controller
             'description.required' => "Hãy nhập mô tả",
             'discount.required' => "Hãy nhập giảm giá",
             'gift.required' => "Hãy nhập quà tặng kèm",
-            'sold.required' => "Nhập số lượng đã bán",
+            'price.gt'=> "Giảm giá phải nhỏ hơn giá niêm yết",
         ];
 
         $validator = Validator::make($data, [
             'name_pr' => 'required|unique:products,name_pr',
             'quantity' => 'required',
+            'category_id' => 'required',
+            'brand_id' => 'required',
             'price' => 'required|numeric|min:0',
             'image' => 'required',
             'description' => 'required',
             'discount' => 'required',
             'gift' => 'required',
-            'sold' => 'required|numeric'
+            'price' => 'required|gt:discount'
         ], $messages);
         if ($validator->fails()) {
             $errors = $validator->errors();
             return redirect()->back()->with('errors', $errors);
         } else {
             $product->name_pr = $request->name_pr;
-            $product->category_id = $request->category;
-            $product->brand_id = $request->brand;
+            $product->category_id = $request->category_id;
+            $product->brand_id = $request->brand_id;
             $product->description = $request->description;
             $product->price = $request->price;
             $product->quantity = $request->quantity;

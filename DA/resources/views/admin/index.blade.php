@@ -22,7 +22,7 @@
                                 <i class="fa fa-cubes fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge" style="font-size: 20px; text-align: center;">{{count($category)}} DANH MỤC</div>
+                                <div class="huge" style="font-size: 20px; text-align: center;"> DANH MỤC</div>
                                 <div></div>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                                 <i class="fa fa-cube fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge" style="font-size: 20px;text-align: center;"> {{count($product)}} SẢN PHẨM</div>
+                                <div class="huge" style="font-size: 20px;text-align: center;"> SẢN PHẨM</div>
                                 <div></div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                 <i class="fa fa-share-square-o fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge" style="font-size: 20px;text-align: center;"> {{count($brand)}} THƯƠNG HIỆU</div>
+                                <div class="huge" style="font-size: 20px;text-align: center;"> THƯƠNG HIỆU</div>
                                 <div></div>
                             </div>
                         </div>
@@ -93,7 +93,7 @@
                                 <i class="fa fa-edit fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge" style="font-size: 20px;text-align: center;">{{count($blog)}} BÀI VIẾT</div>
+                                <div class="huge" style="font-size: 20px;text-align: center;">BÀI VIẾT</div>
                                 <div></div>
                             </div>
                         </div>
@@ -117,7 +117,7 @@
                                 <i class="fa fa-camera fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge" style="font-size: 20px;text-align: center;">{{count($slide)}} SLIDE</div>
+                                <div class="huge" style="font-size: 20px;text-align: center;">SLIDE</div>
                                 <div></div>
                             </div>
                         </div>
@@ -141,7 +141,7 @@
                                 <i class="fa fa-paste fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge" style="font-size: 20px;text-align: center;">{{count($order)}} ĐƠN HÀNG</div>
+                                <div class="huge" style="font-size: 20px;text-align: center;"> ĐƠN HÀNG</div>
                                 <div></div>
                             </div>
                         </div>
@@ -165,7 +165,7 @@
                                 <i class="fa fa-group fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge" style="font-size: 20px;text-align: center;">{{count($customer)}} TK KHÁCH HÀNG</div>
+                                <div class="huge" style="font-size: 20px;text-align: center;">TK KHÁCH HÀNG</div>
                                 <div></div>
                             </div>
                         </div>
@@ -189,7 +189,7 @@
                                 <i class="fa fa-group fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
-                                <div class="huge" style="font-size: 25px">NHÂN VIÊN {{count($staff)}} </div>
+                                <div class="huge" style="font-size: 25px">NHÂN VIÊN</div>
                                 <div></div>
                             </div>
                         </div>
